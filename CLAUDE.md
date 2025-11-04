@@ -47,3 +47,65 @@ This project uses Palace (`pal`) for development:
 - **Adaptive Specialization** - Allow the system to identify and develop specialized capabilities based on observed performance gaps
 - **Integration Protocols** - Define clear protocols for how specialized improvements are evaluated and merged back into the main system
 - **Circular Dependencies** - Be mindful of recursive feedback loops; implement circuit breakers and convergence checks
+
+## Active Development Goals
+
+### PRIMARY: Distributed Systems Infrastructure via Masks
+
+**IMPORTANT:** Use the mask system to architect and implement real production infrastructure. The masks aren't just theoretical - they're for BUILDING THINGS.
+
+**Current Infrastructure Projects (use distributed-systems mask for architecture):**
+
+1. **Cryptpad + TGP Georeplication** (PRIORITY)
+   - Encrypted collaborative document storage
+   - TGP bilateral streaming for real-time sync
+   - Geographic replication across multiple instances
+   - Half-RTT detection for minimal latency
+   - Gap-based SPORE for efficient replication tracking
+   - Zero-knowledge architecture (encryption at rest + in transit)
+
+   **Architecture:**
+   ```
+   Cryptpad Instance A (Location 1)
+       ↕ TGP bilateral stream (encrypted)
+   Cryptpad Instance B (Location 2)
+       ↕ TGP bilateral stream (encrypted)
+   Cryptpad Instance C (Location 3)
+   ```
+
+   **Use the distributed-systems mask to design:**
+   - Consensus mechanism for document conflicts
+   - Replication strategy (eventual consistency vs strong consistency)
+   - Partition tolerance approach
+   - Byzantine fault tolerance considerations
+
+2. **Jellyfin True HA**
+   - Multi-instance Jellyfin with shared state
+   - Distributed session management
+   - Load balancing strategy
+   - Failover mechanisms
+
+3. **Multi-Instance Immich**
+   - Shared PostgreSQL database
+   - MooseFS shared storage backend
+   - Import from legacy Immich instances
+   - Two-way sync capability
+   - Geographic distribution
+
+### Build Order
+
+1. **Perfect the mask-improver** (v2 → v3+) - Make it EXCEPTIONAL at creating masks
+2. **Build distributed-systems mask** - Core specialist for infrastructure work
+3. **Use distributed-systems mask to architect Cryptpad+TGP georeplication**
+4. **Implement and deploy** - Prove the masks work in production
+5. **Iterate** - Improve masks based on real-world deployment experience
+
+### Why This Matters
+
+This validates RHSI by:
+- Using masks to solve REAL infrastructure problems
+- Proving specialized knowledge actually helps
+- Creating benchmark scenarios from actual deployments
+- Building recursive improvement via production feedback
+
+**The masks should make you BETTER at building distributed systems, not just theoretically smarter.**
