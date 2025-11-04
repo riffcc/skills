@@ -79,6 +79,15 @@ This project uses Palace (`pal`) for development:
    - Partition tolerance approach
    - Byzantine fault tolerance considerations
 
+   **CRITICAL: Research Existing Castle Infrastructure First!**
+   - **Citadel networking framework** (`/mnt/castle/workspace/lens-v2/`)
+   - **TGP (Two Generals Protocol)** - solves Byzantine consensus with bilateral streaming
+   - **Half-RTT detection** - minimal latency for real-time replication
+   - **Gap-based SPORE** - efficient replication tracking (4.5x better than bitmap)
+   - **BFT consensus implementation** - existing Byzantine fault tolerance solve
+   - Don't reinvent wheels - understand what's already built and proven!
+   - Use ripgrep to search garage/ and workspace/ for prior art before designing
+
 2. **Jellyfin True HA**
    - Multi-instance Jellyfin with shared state
    - Distributed session management
