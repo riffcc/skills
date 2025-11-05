@@ -27,19 +27,29 @@ def both_can_proceed (s : BilateralState) : Bool :=
 theorem bilateral_exchange (s : BilateralState) :
   both_can_proceed s = true →
   s.alice_has_bob_proof = true ∧ s.bob_has_alice_proof = true := by
-  sorry
+  intro h
+  unfold both_can_proceed at h
+  simp only [Bool.and_eq_true] at h
+  -- h is now: ((alice_ready ∧ alice_has_bob_proof) ∧ bob_ready) ∧ bob_has_alice_proof
+  exact ⟨h.1.1.2, h.2⟩
 
 -- TASK 2: Prove that Alice can't proceed alone
 theorem alice_needs_bob (s : BilateralState) :
   both_can_proceed s = true →
   s.alice_has_bob_proof = true := by
-  sorry
+  intro h
+  unfold both_can_proceed at h
+  simp only [Bool.and_eq_true] at h
+  exact h.1.1.2
 
 -- TASK 3: Symmetry - Bob can't proceed alone either
 theorem bob_needs_alice (s : BilateralState) :
   both_can_proceed s = true →
   s.bob_has_alice_proof = true := by
-  sorry
+  intro h
+  unfold both_can_proceed at h
+  simp only [Bool.and_eq_true] at h
+  exact h.2
 
 -- Test cases
 example :

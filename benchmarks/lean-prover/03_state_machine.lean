@@ -29,12 +29,16 @@ def applyN : Nat → State → State
 -- TASK 1: Prove that we reach Final state in at most 1 step
 theorem reaches_final (s : State) :
   ∃ n : Nat, n ≤ 1 ∧ (applyN n s = State.Final) := by
-  sorry
+  cases s
+  · -- Case: Initial - reach Final in 1 step
+    exact ⟨1, Nat.le_refl 1, rfl⟩
+  · -- Case: Final - already there, 0 steps
+    exact ⟨0, Nat.zero_le 1, rfl⟩
 
 -- TASK 2: Prove that Final is a fixed point
 theorem final_is_fixpoint :
   transition State.Final = State.Final := by
-  sorry
+  rfl  -- Follows directly from the definition of transition
 
 -- Test cases
 example : applyN 1 State.Initial = State.Final := by rfl

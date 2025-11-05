@@ -12,7 +12,12 @@
 
 -- TASK: Replace 'sorry' with a valid proof
 theorem test_and_comm (p q : Prop) : (p ∧ q) → (q ∧ p) := by
-  sorry
+  intro h           -- Assume h : p ∧ q
+  cases h with      -- Destructure the conjunction
+  | intro hp hq =>  -- Get hp : p and hq : q
+    constructor     -- Build q ∧ p
+    · exact hq      -- Prove q (first component)
+    · exact hp      -- Prove p (second component)
 
 -- Test cases
 example : (True ∧ False) → (False ∧ True) := test_and_comm True False
