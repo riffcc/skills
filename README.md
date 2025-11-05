@@ -334,6 +334,77 @@ This is the bootstrap moment. The keystone. The proof that recursive hierarchica
 
 ---
 
+## Available Masks
+
+### mask-improver (v4)
+**Purpose:** Meta-mask that creates and improves other masks
+
+**Capabilities:**
+- Creates new masks from scratch (domain research → identity → expertise → mission)
+- Analyzes mask performance using benchmark results
+- Proposes targeted improvements based on test failures
+- Pattern Library with 11 proven improvement patterns
+- Supports both domain specialists and tool specialists (MCP integration)
+
+**Use Cases:**
+- Creating new specialist masks
+- Improving existing masks based on benchmarks
+- Extracting patterns from successful masks
+- CI/CD test generation for quality assurance masks
+
+**Status:** ✅ Production-ready, recursive self-improvement validated
+
+---
+
+### competition-math-researcher (v1.1)
+**Purpose:** Test AGI-like reasoning on competition mathematics (IMO, Putnam, AIME, AMC)
+
+**Capabilities:**
+- Systematic problem-solving: Understand → Strategize → Execute → Validate
+- 7 core expertise areas (algebra, geometry, number theory, combinatorics, proof techniques, heuristics, validation)
+- Computational verification (Python for pattern discovery, Rust for performance testing)
+- Rigorous proof construction with self-validation
+- Preparation for Lean formal verification integration
+
+**Use Cases:**
+- Solving competition-level math problems
+- Testing genuine mathematical reasoning (vs pattern matching)
+- Benchmarking AGI-like capabilities on objective problems
+- Educational demonstrations of problem-solving process
+
+**Status:** 🧪 Experimental - benchmarks passing (9/9), real problem testing in progress
+
+**Success Metrics:**
+- AMC 10/12: Target 90%+ correctness
+- AIME: Target 70%+ correctness
+- IMO: Target 40%+ correctness
+- Putnam: Target 20%+ correctness
+- Proof Quality: 80%+ rigorous proofs
+
+**This is a critical test:** Competition math requires insight, creativity, and reasoning - capabilities that can't be achieved through memorization alone. If the mask succeeds at IMO/Putnam level, that's strong evidence of AGI-like reasoning.
+
+---
+
+### playwright-tester (v1)
+**Purpose:** Tool specialist for web application testing via Playwright MCP
+
+**Capabilities:**
+- Comprehensive web app audits (functional, usability, accessibility, i18n, performance)
+- MCP integration with `@playwright/mcp@latest`
+- Objective scoring frameworks (5 dimensions with weights)
+- CI/CD test generation (converts findings → Rust cargo tests)
+- GitHub Actions integration for regression detection
+
+**Use Cases:**
+- Auditing web applications for quality issues
+- Generating automated regression test suites
+- Performance and accessibility testing
+- Continuous integration validation
+
+**Status:** ✅ Production-ready, 6/6 benchmarks passing
+
+---
+
 ## Workflows
 
 ### Progressive Mask Development
