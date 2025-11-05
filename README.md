@@ -526,7 +526,12 @@ fn benchmark_distributed_systems_cap_theorem() {
 
 ### 🔄 In Progress
 
-- [ ] Additional specialist masks (distributed-systems, database-architecture, etc.)
+- [x] **Session 2: Creative Writing / Poetry Specialist** - Testing RHSI on subjective domains
+  - [x] Poetry specialist mask (v1) with comprehensive craft knowledge
+  - [x] 12 benchmark tests (structure, forms, prosody, imagery, voice, emotion)
+  - [x] All tests passing (12/12) - perfect scores across all dimensions
+  - [x] Findings documented: RHSI successfully masters subjective/aesthetic domains
+- [ ] Additional technical specialist masks (more infrastructure, systems)
 - [ ] Full benchmark runner with Claude invocation
 - [ ] Benchmark results storage (JSON → SQLite)
 - [ ] Score visualization in palace-mask viewer
