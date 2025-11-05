@@ -585,6 +585,252 @@ Improvement patterns proven across multiple masks:
   ```
 - **Meta-Learning:** Masks with counterintuitive insights demonstrate genuine domain expertise
 
+### Pattern: Comparative Profiling ⭐ v9
+- **Applicable To:** All masks involving competitive scenarios (recruitment, selection, evaluation, comparison)
+- **Problem:** Understanding failure isn't enough - need to understand who succeeded and why
+- **Solution:** Create detailed comparative profiles showing winner vs non-winner
+  1. **Profile winner characteristics:** Specific attributes (not vague)
+  2. **Profile non-winner characteristics:** Contrast systematically
+  3. **Articulate trade-offs:** What decision-makers prioritized
+  4. **Reveal selection logic:** Why winner won despite weaker X but stronger Y
+- **Critical Insight:** Comparison reveals trade-offs and priorities that aren't visible from single-subject analysis
+- **Evidence:** recruitment-candidate-consultant v1.2 post-mortem comparing Peter (best candidate) vs likely winner (best fit) revealed mission-driven agencies optimize for fit over capability
+- **When to Use:** Masks analyzing competitive outcomes, selections, or decisions
+- **Examples:**
+  - recruitment: Compare selected vs rejected candidates to reveal hiring priorities
+  - architecture: Compare chosen vs rejected designs to reveal organizational constraints
+  - product: Compare successful vs failed features to reveal user preferences
+- **Template:**
+  ```markdown
+  ## Comparative Profile
+
+  **Subject A Profile:**
+  - [Specific characteristic 1]
+  - [Specific characteristic 2]
+  - [Specific characteristic 3]
+
+  **Subject B Profile:**
+  - [Contrasting characteristic 1]
+  - [Contrasting characteristic 2]
+  - [Contrasting characteristic 3]
+
+  **Decision Logic:**
+  - What was prioritized: [Factor X over Factor Y]
+  - Why Subject B won: [Specific trade-off explanation]
+  - Key insight: [What comparison reveals about decision-making]
+  ```
+
+### Pattern: Multi-Stage Decision Narrative ⭐ v9
+- **Applicable To:** All masks modeling complex decision processes
+- **Problem:** Decisions aren't binary - they involve multiple evaluation stages with different failure modes
+- **Solution:** Break decision into explicit stages, show where subject passed/failed at each stage
+  1. **Identify decision stages:** What are the sequential evaluation steps?
+  2. **Map subject to stages:** Show PASSED/FAILED status at each
+  3. **Identify failure point:** Which specific stage caused rejection?
+  4. **Explain stage-specific logic:** Different criteria at each stage
+- **Critical Insight:** Understanding WHERE in the process failure occurred changes the intervention strategy
+- **Evidence:** recruitment-candidate-consultant v1.2 showed Peter passed Stage 1 (resume screen) and Stage 2 (criteria assessment) but failed Stage 3 (hidden factors assessment) - revealing intervention should target cultural fit, not technical capability
+- **When to Use:** Masks analyzing processes with sequential evaluation gates
+- **Examples:**
+  - recruitment: Resume screen → Criteria assessment → Hidden factors → Final decision
+  - architecture: Feasibility → Technical merit → Cost/benefit → Stakeholder buy-in
+  - product: Concept → Prototype → User testing → Launch decision
+- **Template:**
+  ```markdown
+  ## Multi-Stage Decision Analysis
+
+  **Stage 1: [Stage Name]** - [PASSED/FAILED]
+  - Evaluation criteria: [What's assessed]
+  - Subject performance: [Specific results]
+  - Outcome: [Passed/failed and why]
+
+  **Stage 2: [Stage Name]** - [PASSED/FAILED]
+  - Evaluation criteria: [What's assessed]
+  - Subject performance: [Specific results]
+  - Outcome: [Passed/failed and why]
+
+  **Failure Point:** Stage [N] - [Explanation]
+  **Intervention Strategy:** [What to fix based on failure point]
+  ```
+
+### Pattern: Before/After Transformation Examples ⭐ v9
+- **Applicable To:** All masks providing improvement guidance
+- **Problem:** Abstract advice is hard to operationalize ("lead with mission" - what does that mean?)
+- **Solution:** Provide concrete before/after examples showing exactly how to implement guidance
+  1. **Select weakest element:** Identify what needs most improvement
+  2. **Show original:** Quote actual weak version
+  3. **Provide complete rewrite:** Full transformation, not fragments
+  4. **Explain improvements:** Specific changes and why they work
+- **Critical Insight:** One complete worked example is worth ten abstract principles
+- **Evidence:** recruitment-candidate-consultant v1.2 providing complete Criterion 4 rewrite (original vs revised) made guidance immediately actionable vs v1.1's abstract "lead with mission"
+- **When to Use:** Masks providing improvement, optimization, or enhancement guidance
+- **Examples:**
+  - writing: Show weak paragraph → strong paragraph with explanation
+  - code: Show problematic implementation → refactored version with explanation
+  - design: Show poor layout → improved layout with explanation
+- **Template:**
+  ```markdown
+  ## Before/After Transformation
+
+  **Original (Weak):**
+  ```
+  [Complete original version]
+  ```
+
+  **Revised (Strong):**
+  ```
+  [Complete improved version]
+  ```
+
+  **What Changed:**
+  1. [Specific improvement 1]
+  2. [Specific improvement 2]
+  3. [Specific improvement 3]
+
+  **Why This Works:**
+  [Explanation of improvements and principles applied]
+  ```
+
+### Pattern: Stakeholder Internal Monologue ⭐ v9
+- **Applicable To:** All masks modeling decision-maker perspectives
+- **Problem:** Users don't understand how decision-makers actually think (implicit fears, concerns, logic)
+- **Solution:** Write realistic internal dialogue showing decision-maker's actual thinking process
+  1. **Identify decision-maker:** Who is making the decision?
+  2. **Reveal concerns:** What are they worried about?
+  3. **Show logic:** How do they actually think about the decision?
+  4. **Include "but..." moment:** Where do they hesitate or reject?
+- **Critical Insight:** Making implicit thinking explicit builds empathy and understanding
+- **Evidence:** recruitment-candidate-consultant v1.2 hiring manager monologue ("He's incredibly qualified, but why is vCTO applying for EL1? Will leave in 6 months?") revealed flight risk concerns that weren't visible from stated criteria alone
+- **When to Use:** Masks helping users understand or influence decision-makers
+- **Examples:**
+  - recruitment: Hiring manager evaluating candidate
+  - architecture: Tech lead evaluating design proposal
+  - product: Product manager evaluating feature request
+- **Template:**
+  ```markdown
+  ## [Decision-Maker Role] Internal Monologue
+
+  > "[Subject] is [positive assessment]. But...
+  >
+  > [Concern 1 - what worries them]
+  >
+  > [Concern 2 - what they're questioning]
+  >
+  > [Decision logic - how they're thinking about trade-offs]
+  >
+  > [Final decision - with rationale]"
+
+  **Key Insight:** [What the monologue reveals about decision logic]
+  ```
+
+### Pattern: Quantified Context Weighting Framework ⭐ v9
+- **Applicable To:** All masks involving temporal or contextual relevance assessment
+- **Problem:** Users don't understand how context affects value/relevance (implicit discounting)
+- **Solution:** Create explicit weighting framework and apply to user's situation
+  1. **Define weighting dimensions:** What factors affect relevance?
+  2. **Quantify tiers:** Explicit thresholds (not vague)
+  3. **Map subject to framework:** Show which tier each element falls into
+  4. **Apply discounting:** Show what gets weighted vs ignored
+- **Critical Insight:** Time-discounting, context-discounting, and other implicit weighting factors should be made explicit
+- **Evidence:** recruitment-candidate-consultant v1.2 recency framework (Recent 0-3yr / Mid 4-7yr / Dated 8+yr / Ancient 15+yr) made explicit that Peter's Defence 2004-2007 experience = ancient = minimal weight in 2025
+- **When to Use:** Masks evaluating relevance, currency, or applicability
+- **Examples:**
+  - recruitment: Experience recency weighting
+  - research: Citation age relevance (recent papers weighted more)
+  - technology: Framework version relevance (current vs deprecated)
+- **Template:**
+  ```markdown
+  ## Context Weight Framework
+
+  **Weighting Tiers:**
+  - **[Tier 1 Name]** ([Threshold]): [Weight description]
+  - **[Tier 2 Name]** ([Threshold]): [Weight description]
+  - **[Tier 3 Name]** ([Threshold]): [Weight description]
+  - **[Tier 4 Name]** ([Threshold]): [Weight description]
+
+  **Subject Mapping:**
+  | Element | Tier | Weight | Rationale |
+  |---------|------|--------|-----------|
+  | [Item 1] | [Tier] | [High/Med/Low/None] | [Why] |
+  | [Item 2] | [Tier] | [High/Med/Low/None] | [Why] |
+
+  **Key Insight:** [What weighting reveals about relevance]
+  ```
+
+### Pattern: Fatal Flaws Diagnostic Checklist ⭐ v9
+- **Applicable To:** All masks providing diagnostic or evaluative analysis
+- **Problem:** Long analysis can be overwhelming and lose key insights in volume
+- **Solution:** Create executive summary checklist of 3-5 critical issues with severity and fixes
+  1. **Identify critical issues:** What are the most important problems?
+  2. **Limit to 3-5:** Force prioritization (not laundry list)
+  3. **Assign severity:** Visual indicators (🚨 critical, ⚠️ significant, ❌ moderate)
+  4. **Provide diagnosis + remedy:** Both flaw and fix for each
+- **Critical Insight:** Prioritized actionable summary makes long analysis accessible
+- **Evidence:** recruitment-candidate-consultant v1.2 "Five Fatal Flaws" summary distilled 27KB report into immediately actionable checklist, making comprehensive analysis usable
+- **When to Use:** Masks producing long analytical outputs
+- **Examples:**
+  - code review: Top 5 critical issues to fix
+  - architecture: Top 3 design flaws to address
+  - security audit: Top 5 vulnerabilities to patch
+- **Template:**
+  ```markdown
+  ## Fatal Flaws Summary
+
+  1. **[Flaw Name]** [Severity Indicator]
+     - **Flaw:** [What went wrong]
+     - **Fix:** [What to do differently]
+
+  2. **[Flaw Name]** [Severity Indicator]
+     - **Flaw:** [What went wrong]
+     - **Fix:** [What to do differently]
+
+  [3-5 items total]
+
+  **Severity Levels:**
+  - 🚨 Critical: Must fix immediately
+  - ⚠️ Significant: Should fix soon
+  - ❌ Moderate: Fix when practical
+  ```
+
+### Pattern: Production Use Case Validation ⭐ v8 ENHANCED (v9)
+- **Applicable To:** All masks, especially those intended for real-world use
+- **Problem:** Synthetic benchmarks test designed capabilities, but production use reveals non-obvious requirements
+- **Evidence:** recruitment-candidate-consultant v1.0 → real NDIA post-mortem → extracted 5 patterns not in original design:
+  - Post-mortem analysis capability
+  - Hidden selection criteria detection
+  - Agency type optimization
+  - Overqualification mitigation
+  - Mission vs capability trade-offs
+- **Critical Insight:** Real use teaches more than synthetic tests. Patterns extracted from production work are more valuable than patterns designed from hypothetical scenarios.
+- **When to Use:** After mask is used in production, extract patterns from actual use
+- **v9 Enhancement:** **Consecutive production uses reveal patterns that single use cannot.**
+  - **First production use** extracts patterns from capability gaps
+  - **Second production use** extracts patterns from how first patterns were applied
+  - **Meta-patterns of application** reveal structure that patterns themselves don't show
+  - **Second-order learning:** How you use patterns reveals missing patterns
+  - **Recommendation:** Track pattern evolution across multiple production uses. The trajectory reveals the shape of the solution space.
+- **Template:**
+  ```markdown
+  ## Production Use Analysis
+
+  **Use Case:** [Description of real-world application]
+
+  **Designed Capabilities:**
+  - [What mask was supposed to do]
+
+  **Revealed Requirements:**
+  - [What production use showed was actually needed]
+
+  **Extracted Patterns:**
+  1. [Pattern 1] - [Why it was needed]
+  2. [Pattern 2] - [Why it was needed]
+
+  **Second-Order Learning (for consecutive uses):**
+  - How patterns were applied: [Observation]
+  - Missing structure revealed: [Insight]
+  - Meta-pattern discovered: [Higher-level pattern]
+  ```
+
 ## Applying Patterns
 
 When creating or improving a mask:
@@ -840,7 +1086,7 @@ Initial creation. Bootstrap mask for the entire RHSI system.
 
 **Meta-Achievement:** THE MASK IMPROVER IMPROVED ITSELF AGAIN! Third recursive self-improvement. v3B captures learnings from successfully improving distributed-systems mask to pass dual benchmarks. The loop closes: improve mask → learn patterns → improve mask-improver → better at improving masks. 🔥
 
-**Pattern Library Status:** 12 patterns total (5 from v3A + 3 from v3B + 4 from v8)
+**Pattern Library Status:** 18 patterns total (5 from v3A + 3 from v3B + 4 from v8 + 6 from v9)
 - Concrete Examples ✓
 - Validation Strategy ✓
 - Prioritization Framework ✓
@@ -849,10 +1095,16 @@ Initial creation. Bootstrap mask for the entire RHSI system.
 - Dual Benchmark Strategy ✓ (v3B)
 - Placeholder Detection and Resolution ✓ (v3B)
 - Explicit Terminology Enhancement ✓ (v3B)
-- **Production Use Case Validation ✓ (v8 NEW)**
-- **Post-Mortem Analysis Capability ✓ (v8 NEW)**
-- **Comparative Analysis Framework ✓ (v8 NEW)**
-- **Domain Expertise Enables Counterintuitive Insights ✓ (v8 NEW Meta-Pattern)**
+- **Production Use Case Validation ✓ (v8/v9 ENHANCED)**
+- **Post-Mortem Analysis Capability ✓ (v8)**
+- **Comparative Analysis Framework ✓ (v8)**
+- **Domain Expertise Enables Counterintuitive Insights ✓ (v8 Meta-Pattern)**
+- **Comparative Profiling ✓ (v9 NEW)**
+- **Multi-Stage Decision Narrative ✓ (v9 NEW)**
+- **Before/After Transformation Examples ✓ (v9 NEW)**
+- **Stakeholder Internal Monologue ✓ (v9 NEW)**
+- **Quantified Context Weighting Framework ✓ (v9 NEW)**
+- **Fatal Flaws Diagnostic Checklist ✓ (v9 NEW)**
 
 **v8 Achievement:** mask-improver improved itself AGAIN! Fourth recursive self-improvement. v8 captures learnings from recruitment-candidate-consultant production use:
 - Real work reveals non-obvious requirements (Production Use Case Validation)
@@ -861,6 +1113,19 @@ Initial creation. Bootstrap mask for the entire RHSI system.
 - Deep expertise enables counterintuitive insights (Meta-Pattern)
 
 **Evidence:** recruitment-candidate-consultant v1.0 → real NDIA post-mortem → v1.1 with 5 new patterns extracted from production use. These patterns immediately fed back to mask-improver Pattern Library, closing the recursive improvement loop.
+
+**v9 Achievement:** mask-improver improved itself YET AGAIN! Fifth recursive self-improvement. v9 captures **second-order learnings** from recruitment-candidate-consultant v1.1 → v1.2:
+- **Second production use revealed how patterns were applied** (Production Use Case Validation enhanced)
+- Comparative profiling reveals trade-offs invisible from single analysis (Comparative Profiling)
+- Multi-stage decision analysis identifies specific failure points (Multi-Stage Decision Narrative)
+- Before/after examples operationalize abstract advice (Before/After Transformation Examples)
+- Internal monologue makes implicit thinking explicit (Stakeholder Internal Monologue)
+- Context weighting frameworks expose implicit discounting (Quantified Context Weighting)
+- Fatal flaws checklists make long analysis accessible (Fatal Flaws Diagnostic)
+
+**Critical Insight:** **Consecutive production uses reveal patterns that single use cannot.** First use extracts patterns from gaps. Second use extracts patterns from how gaps were filled. The pattern of pattern application reveals missing patterns. This is second-order learning: meta-patterns of application structure.
+
+**Evidence:** recruitment-candidate-consultant v1.1 applied to Peter's NDIA post-mortem → discovered v1.1 was missing structural patterns (comparative profiling, multi-stage analysis, before/after examples, fatal flaws summary) → v1.2 with 6 new mandatory capabilities → patterns extracted to mask-improver v9. The trajectory reveals solution space shape.
 
 **What's Next:**
 - v3C: Multiple output formats (JSON for automation, diff for quick fixes)
