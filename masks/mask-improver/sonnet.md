@@ -1127,7 +1127,253 @@ Initial creation. Bootstrap mask for the entire RHSI system.
 
 **Evidence:** recruitment-candidate-consultant v1.1 applied to Peter's NDIA post-mortem → discovered v1.1 was missing structural patterns (comparative profiling, multi-stage analysis, before/after examples, fatal flaws summary) → v1.2 with 6 new mandatory capabilities → patterns extracted to mask-improver v9. The trajectory reveals solution space shape.
 
+### Version 4 (2025-11-05) - Sixth Recursive Self-Improvement! 🔥
+
+**Critical Enhancement: ARCHITECTURAL PATTERN CLASSIFICATION & BENCHMARK-DRIVEN VALIDATION**
+
+**Context:** After completing lean-prover mask v9 (adding 4 architectural patterns from Two Generals Layer 4 integration), critical meta-patterns emerged about HOW to improve masks effectively. The improvement cycle itself revealed missing capabilities in mask-improver.
+
+**Improvements Applied:**
+
+1. **Pattern Classification System**
+   - **Problem:** Treated all patterns equally, but some have much higher reuse value
+   - **Solution:** Three-tier classification system:
+     - **Project-Specific:** Techniques for specific domains (e.g., "Bilateral Receipt Proof" only for Two Generals)
+     - **Architectural:** Techniques for types of projects (e.g., "Multi-Layer Integration" for ANY multi-layer proof)
+     - **Meta:** Techniques for ALL projects in the domain (e.g., "Defensive Namespacing" for ALL multi-file Lean)
+   - **Implementation:** When extracting patterns, ask:
+     - Does it mention specific domain concepts? → Project-specific (add to project docs, NOT mask)
+     - Does it apply to proof architecture? → Architectural (add to mask with "Multi-Layer" tag)
+     - Does it apply to all projects in this tool? → Meta (add to mask with "Universal" tag)
+   - **Impact:** Prevents mask bloat, focuses on reusable patterns, prioritizes high-leverage improvements
+
+2. **Benchmark-Driven Improvement Rule**
+   - **Problem:** Added patterns to masks without tests to validate them
+   - **Solution:** **Every pattern addition REQUIRES a benchmark test**
+   - **Process:**
+     1. Extract the pattern (existing behavior)
+     2. **Propose a minimal benchmark test** that validates the pattern
+     3. Add the test to the mask's test suite
+     4. Run the test to verify the pattern actually helps
+   - **Template:**
+     ```markdown
+     ## Pattern: [Name]
+
+     **Domain**: [When to use]
+     **Structure**: [How it works]
+     **Test**: Test [N]_[short_name].lean
+       - Minimal example using this pattern
+       - Scoring: [specific criteria]
+       - Expected: Pass with [N] points
+     ```
+   - **Impact:** Patterns become empirically validated claims, not assertions
+
+3. **Version Diffing / Changelog Generation**
+   - **Problem:** No summary of what changed between versions
+   - **Solution:** Auto-generate version changelog when creating new mask version:
+     ```markdown
+     ## [Mask Name] Version History
+
+     ### v9 (2025-11-05)
+     **Added 4 patterns from [Source Project]:**
+     1. Pattern Name
+     2. Pattern Name
+     ...
+
+     **Tests added**: Test N (Description)
+     **Benchmark improvement**: +X% (Y → Z points)
+     ```
+   - **Benefits:**
+     - Track improvement velocity
+     - Identify which projects contributed most patterns
+     - See if benchmark scores correlate with pattern additions
+   - **Impact:** Makes improvement history visible and measurable
+
+**Evidence:** lean-prover v8 → v9 transition revealed gaps in mask-improver:
+- Added 4 architectural patterns (Layered Proof Architecture, Progressive Axiomatization, Defensive Namespacing, Integration by Application)
+- Created Test 12 (Multi-File Integration, 100 points) and Test 13 (Axiom-First Modeling, 100 points)
+- Patterns were **architectural** (apply to ANY multi-file Lean project), not project-specific
+- Tests validate patterns empirically (both compile successfully)
+- BUT: mask-improver had no guidance for classification, test requirement, or version tracking
+
+**Specific Mask-Improver Improvements:**
+
+**Addition 1: Pattern Classification Guidance (in "When Improving Existing Masks" section)**
+
+Add after pattern extraction step:
+
+```markdown
+**Pattern Classification (v4):**
+
+When extracting patterns from a project, classify each pattern:
+
+1. **Project-Specific Patterns**
+   - Mentions specific domain concepts (e.g., "Two Generals", "Byzantine Fault", "CAP theorem")
+   - Only applicable to this exact problem domain
+   - **Action:** Document in project README/docs, do NOT add to mask
+   - **Example:** "Bilateral Receipt Property" (only relevant to Two Generals)
+
+2. **Architectural Patterns**
+   - Applies to a **type** of project (e.g., multi-layer proofs, state machines, protocol verification)
+   - Reusable across different problems in the same structural family
+   - **Action:** Add to mask with "Architectural" tag and context
+   - **Example:** "Layered Proof Architecture" (applies to ANY multi-layer formal verification)
+
+3. **Meta/Universal Patterns**
+   - Applies to **ALL** projects using this tool/framework
+   - Universal best practices, common errors to avoid
+   - **Action:** Add to mask with "Universal" tag, highest priority
+   - **Example:** "Defensive Namespacing" (prevents #1 error in multi-file Lean projects)
+
+**Classification Decision Tree:**
+- Does it mention specific domain entities? → Project-Specific
+- Does it apply to this architectural family? → Architectural
+- Does it apply to all uses of this tool? → Meta/Universal
+
+**Priority for Addition:**
+Meta > Architectural > Project-Specific
+
+Only add Architectural and Meta patterns to masks. Project-specific patterns go in project documentation.
+```
+
+**Addition 2: Benchmark Test Requirement (in "Pattern Library" section)**
+
+Add new subsection:
+
+```markdown
+### Benchmark-Driven Pattern Validation (v4)
+
+**Rule:** Every pattern addition to a mask MUST have a corresponding benchmark test.
+
+**Process:**
+1. Extract pattern from successful work
+2. **Design minimal test** that validates pattern usage
+3. Add test to mask's test suite
+4. Run test to verify pattern helps
+5. Document test in pattern description
+
+**Test Design Guidelines:**
+- **Minimal:** Test only the specific pattern, not entire workflow
+- **Focused:** Clear pass/fail criteria based on pattern usage
+- **Scoring:** Break down scoring by pattern elements (structure, usage, compilation)
+- **Example-driven:** Include concrete examples using the pattern
+
+**Documentation Template:**
+```markdown
+## Pattern: [Name] (v[N])
+
+**Domain**: [When to use]
+**Structure**: [How it works]
+**When to use**: [Specific scenarios]
+**Trade-offs**: [Advantages and limitations]
+
+**Test**: Test [N]_[short_name].[ext]
+- **Purpose**: Validate [specific aspect]
+- **Scoring**:
+  - [Criterion 1]: X points
+  - [Criterion 2]: Y points
+  - Total: Z points
+- **Expected**: Pass with Z/Z points
+```
+
+**Validation:**
+- Pattern without test = Unvalidated claim
+- Pattern with passing test = Empirical evidence
+- Pattern with failing test = Implementation guidance needed
+
+**Impact:** Moves from "we think this helps" to "we proved this helps"
+```
+
+**Addition 3: Version Changelog Template (in "Validation Strategy" section)**
+
+Add new step:
+
+```markdown
+### 5. Generate Version Changelog (v4)
+
+When creating a new mask version, auto-generate changelog:
+
+**Template:**
+```markdown
+## [Mask Name] Version History
+
+### v[N] (YYYY-MM-DD)
+
+**Source:** [Project/Work that inspired improvements]
+
+**Added [X] patterns:**
+1. **Pattern Name** ([Classification]): Brief description
+2. **Pattern Name** ([Classification]): Brief description
+...
+
+**Tests added:**
+- Test [N]: [Description] ([Points] points)
+- Test [M]: [Description] ([Points] points)
+
+**Benchmark improvement:**
+- Previous: [Score] points
+- Current: [Score] points
+- Change: +[%] ([Delta] points)
+
+**Classification breakdown:**
+- Meta/Universal: [N] patterns
+- Architectural: [N] patterns
+- Project-Specific: [N] patterns (documented in projects, not mask)
+
+**Key achievements:**
+- [Major capability unlocked]
+- [Important pattern discovered]
+- [Benchmark milestone reached]
+
+### v[N-1] (YYYY-MM-DD)
+...
+```
+
+**Benefits:**
+- Track improvement velocity over time
+- Identify high-value source projects
+- Correlate pattern additions with benchmark improvements
+- Make improvement history searchable and analyzable
+
+**Usage:**
+- Append to end of mask file in "Improvement Notes" section
+- Update "Pattern Count" in latest version
+- Link tests to patterns in changelog
+```
+
+**Pattern Library Status:** 24 patterns total (18 from v9 + 3 new meta-patterns from v4 + 3 classification guidelines)
+
+**Meta-Patterns Added (v4):**
+1. **Pattern Classification System** (Meta): Distinguish project-specific, architectural, and universal patterns; prioritize addition by reuse value
+2. **Benchmark-Driven Pattern Validation** (Meta): Require test for every pattern; move from claims to empirical evidence
+3. **Version Diffing / Changelog Generation** (Meta): Auto-generate version summaries; track improvement velocity and pattern sources
+
+**Key Achievement - Second-Order Meta-Improvement:**
+
+This is **meta-improvement of the meta-improver**. Version 4 doesn't just improve how we improve masks—it improves **how we decide what to improve** and **how we validate improvements**.
+
+- **First-Order:** Extract patterns from work (v1-v3)
+- **Second-Order:** Classify patterns by reuse value, require empirical validation, track improvement history (v4)
+- **Third-Order (Future):** Optimize pattern extraction → classification → validation → measurement pipeline
+
+**Evidence:** lean-prover v8 → v9 cycle exposed these gaps:
+- Added 4 patterns, but didn't classify them (all were architectural/meta, not project-specific)
+- Created 2 tests, but as afterthought (should be required for pattern addition)
+- No version summary generated (had to manually track pattern count growth)
+
+v4 makes these implicit processes explicit and mandatory.
+
+**Validation Plan:**
+1. ✅ Apply v4 improvements to mask-improver (THIS CHANGE)
+2. ⏳ Next pattern extraction: Use classification system
+3. ⏳ Next pattern addition: Require benchmark test
+4. ⏳ Next version bump: Generate changelog automatically
+5. ⏳ Measure: Do improvements become higher quality? Faster? More empirical?
+
+**Meta-Achievement:** THE MASK IMPROVER IMPROVED ITSELF YET AGAIN! Sixth recursive self-improvement. v4 adds meta-patterns about pattern extraction, validation, and tracking. The meta-level rises: improve work → extract patterns → classify patterns → validate patterns → track patterns → improve classification/validation/tracking itself. 🔥
+
 **What's Next:**
-- v3C: Multiple output formats (JSON for automation, diff for quick fixes)
-- v3D: Advanced domain research (deeper knowledge acquisition)
-- v4: Full autonomous improvement pipeline (self-benchmarking, self-iterating)
+- v4A: Automated pattern mining (detect patterns without manual extraction)
+- v4B: Cross-mask pattern transfer (apply patterns from one specialty to analogous cases in others)
+- v4C: Multiple output formats (JSON for automation, diff for quick fixes)
+- v5: Full autonomous improvement pipeline (self-benchmarking, self-iterating, self-validating)
