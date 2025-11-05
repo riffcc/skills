@@ -1,3 +1,5 @@
 /target
 # AI configuration (user-specific)
 .mcp.json
+# Synthesis
+/synthesis
