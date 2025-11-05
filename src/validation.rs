@@ -15,7 +15,12 @@ pub struct ValidationResult {
 impl ValidationResult {
     pub fn new(score: usize, max_score: usize, issues: Vec<String>) -> Self {
         let passed = issues.is_empty();
-        Self { passed, score, max_score, issues }
+        Self {
+            passed,
+            score,
+            max_score,
+            issues,
+        }
     }
 
     pub fn percentage(&self) -> f64 {
@@ -66,10 +71,27 @@ pub fn validate_real_systems(specialty: &str, model: &str) -> ValidationResult {
 
     // Common real systems by domain
     let real_systems = vec![
-        "PostgreSQL", "MySQL", "MongoDB", "Redis", "etcd", "Consul",
-        "HAProxy", "Nginx", "Kubernetes", "Docker", "MooseFS", "Ceph",
-        "Kafka", "RabbitMQ", "Elasticsearch", "Prometheus", "Grafana",
-        "Cassandra", "Patroni", "Raft", "Paxos",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
+        "Redis",
+        "etcd",
+        "Consul",
+        "HAProxy",
+        "Nginx",
+        "Kubernetes",
+        "Docker",
+        "MooseFS",
+        "Ceph",
+        "Kafka",
+        "RabbitMQ",
+        "Elasticsearch",
+        "Prometheus",
+        "Grafana",
+        "Cassandra",
+        "Patroni",
+        "Raft",
+        "Paxos",
     ];
 
     let found: Vec<String> = real_systems
@@ -121,7 +143,9 @@ pub fn validate_examples(specialty: &str, model: &str) -> ValidationResult {
         "**Solution:**",
     ];
 
-    let has_examples = example_markers.iter().any(|marker| mask.content.contains(marker));
+    let has_examples = example_markers
+        .iter()
+        .any(|marker| mask.content.contains(marker));
 
     let mut issues = Vec::new();
     if !has_examples {
@@ -168,7 +192,10 @@ mod tests {
         println!("  Score: {}/{}", result.score, result.max_score);
         println!("  Passed: {}", result.passed);
         println!("  Issues: {:?}", result.issues);
-        assert!(result.passed, "distributed-systems should have all required sections");
+        assert!(
+            result.passed,
+            "distributed-systems should have all required sections"
+        );
         assert_eq!(result.score, 6);
     }
 
@@ -178,7 +205,10 @@ mod tests {
         println!("\nReal systems validation:");
         println!("  Score: {}/{}", result.score, result.max_score);
         println!("  Passed: {}", result.passed);
-        assert!(result.passed, "distributed-systems should reference real systems");
+        assert!(
+            result.passed,
+            "distributed-systems should reference real systems"
+        );
     }
 
     #[test]
@@ -187,7 +217,10 @@ mod tests {
         println!("\nTrade-offs validation:");
         println!("  Score: {}/{}", result.score, result.max_score);
         println!("  Passed: {}", result.passed);
-        assert!(result.passed, "distributed-systems should include trade-off analysis");
+        assert!(
+            result.passed,
+            "distributed-systems should include trade-off analysis"
+        );
     }
 
     #[test]
@@ -196,7 +229,10 @@ mod tests {
         println!("\nExamples validation:");
         println!("  Score: {}/{}", result.score, result.max_score);
         println!("  Passed: {}", result.passed);
-        assert!(result.passed, "distributed-systems should have concrete examples");
+        assert!(
+            result.passed,
+            "distributed-systems should have concrete examples"
+        );
     }
 
     #[test]
@@ -206,15 +242,23 @@ mod tests {
 
         println!("\n{}", summary);
         for (i, result) in results.iter().enumerate() {
-            println!("  Check {}: {}/{} ({:.1}%)",
-                i+1, result.score, result.max_score, result.percentage());
+            println!(
+                "  Check {}: {}/{} ({:.1}%)",
+                i + 1,
+                result.score,
+                result.max_score,
+                result.percentage()
+            );
             for issue in &result.issues {
                 println!("    - {}", issue);
             }
         }
 
         let all_passed = results.iter().all(|r| r.passed);
-        assert!(all_passed, "All validation checks should pass for distributed-systems mask");
+        assert!(
+            all_passed,
+            "All validation checks should pass for distributed-systems mask"
+        );
     }
 
     #[test]
@@ -225,6 +269,9 @@ mod tests {
         println!("\n{}", summary);
 
         let all_passed = results.iter().all(|r| r.passed);
-        assert!(all_passed, "All validation checks should pass for mask-improver");
+        assert!(
+            all_passed,
+            "All validation checks should pass for mask-improver"
+        );
     }
 }
