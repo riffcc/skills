@@ -40,27 +40,68 @@ This project uses Palace (`pal`) for development:
 
 ## External Codebases to Reference
 
-**CRITICAL: Always reference the Palace CLI codebase before implementing features**
+**CRITICAL: Always reference related Palace ecosystem repos before implementing features**
 
-Palace CLI is located at `/home/user/palace/` and should be consulted for:
-- Architecture patterns and design decisions (see CLAUDE.md, ARCHITECTURE_INDEX.md)
-- Implementation examples of CLI commands
-- Testing patterns and conventions (Rust with cargo test)
-- Configuration file handling (.palace directory structure)
-- Remote execution patterns (how `pal` communicates with runners)
-- Job queue integration patterns
-- Discord bot integration patterns
+This project is part of the Palace ecosystem. The following repos should be cloned and referenced:
 
-Before implementing any feature, search the palace codebase for similar functionality:
+### Cloning Related Repos
+
+If a repo is not yet cloned, use the `SUFORGE_API_KEY` environment variable to clone it:
+
 ```bash
-# Search for relevant code patterns
+# Clone any missing repos from the wings org on forge
+cd /home/user
+git clone --depth 1 https://oauth2:${SUFORGE_API_KEY}@forge.palace.riff.cc/wings/REPO_NAME.git
+
+# Verify the clone
+ls /home/user/REPO_NAME/
+```
+
+### Palace Ecosystem Repos
+
+1. **Palace CLI** (`/home/user/palace/`) - **PRIMARY REFERENCE**
+   - Main CLI tool that this project builds upon
+   - Architecture patterns and design decisions (CLAUDE.md, ARCHITECTURE_INDEX.md)
+   - CLI command implementations
+   - Testing patterns (Rust with cargo test)
+   - Configuration file handling (.palace directory structure)
+   - Remote execution patterns (how `pal` communicates with runners)
+   - Job queue integration patterns
+   - Discord bot integration patterns
+   - **Always check here first before implementing features**
+
+2. **Palace Skills** (`/home/user/palace-skills/`) - **CURRENT REPO**
+   - This repository - RHSI system for adaptive AI specialization
+   - Mask system for specialized AI capabilities
+   - Benchmark system for validation
+   - Recursive self-improvement patterns
+
+3. **City Mapper** (`/home/user/city-mapper/`)
+   - If not cloned: `git clone --depth 1 https://oauth2:${SUFORGE_API_KEY}@forge.palace.riff.cc/wings/city-mapper.git`
+   - [Purpose and patterns to reference - TBD]
+
+4. **Palace Historian** (`/home/user/palace-historian/`)
+   - If not cloned: `git clone --depth 1 https://oauth2:${SUFORGE_API_KEY}@forge.palace.riff.cc/wings/palace-historian.git`
+   - [Purpose and patterns to reference - TBD]
+
+### Search Pattern Across All Repos
+
+Before implementing any feature, search across the ecosystem:
+
+```bash
+# Search for patterns in specific repo
 rg "keyword" /home/user/palace/
 
-# Look at palace's architecture
-cat /home/user/palace/ARCHITECTURE_INDEX.md
+# Search across all Palace repos
+rg "keyword" /home/user/palace* /home/user/city-mapper/
 
-# Check palace's TODO for context
+# Check architecture docs
+cat /home/user/palace/ARCHITECTURE_INDEX.md
 cat /home/user/palace/TODO.md
+cat /home/user/palace/CLAUDE.md
+
+# Compare implementation patterns
+rg "similar_feature" /home/user/{palace,palace-skills,city-mapper,palace-historian}/
 ```
 
 ## Project-Specific Guidelines
