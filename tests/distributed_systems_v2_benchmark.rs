@@ -1,5 +1,4 @@
-
-se palace_skills::*;
+use palace_skills::*;
 
 /// V2 Benchmarks for distributed-systems mask
 ///
@@ -25,7 +24,7 @@ fn v2_cap_theorem_tradeoffs() {
         || content.contains("Availability + Partition")
         || content.contains("Availability and Partition");
 
-    let has_ca_impossibility = content.contains("CA system")
+    let _has_ca_impossibility = content.contains("CA system")
         && (content.contains("impossible")
             || content.contains("cannot exist")
             || content.contains("network partition"));
@@ -156,7 +155,7 @@ fn v2_production_examples() {
         || content.contains("%");
 
     // Check for deployment details (not just theory)
-    let has_deployment_details = content.contains("deploy")
+    let _has_deployment_details = content.contains("deploy")
         || content.contains("configuration")
         || content.contains("setup");
 
