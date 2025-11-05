@@ -57,7 +57,11 @@ fn main() -> anyhow::Result<()> {
 
             let count = masks.len();
             for (specialty, model) in masks {
-                println!("  {} {}", "●".blue(), format!("{}/{}", specialty, model).cyan());
+                println!(
+                    "  {} {}",
+                    "●".blue(),
+                    format!("{}/{}", specialty, model).cyan()
+                );
             }
 
             println!();
@@ -65,7 +69,12 @@ fn main() -> anyhow::Result<()> {
         }
 
         Commands::Load { specialty, model } => {
-            println!("{}", format!("Loading mask: {}/{}", specialty, model).bold().cyan());
+            println!(
+                "{}",
+                format!("Loading mask: {}/{}", specialty, model)
+                    .bold()
+                    .cyan()
+            );
             println!();
 
             let mask = load_mask_from_file(&specialty, &model)?;
@@ -83,7 +92,10 @@ fn main() -> anyhow::Result<()> {
         }
 
         Commands::Preview { specialty, model } => {
-            println!("{}", format!("Preview: {}/{}", specialty, model).bold().cyan());
+            println!(
+                "{}",
+                format!("Preview: {}/{}", specialty, model).bold().cyan()
+            );
             println!();
 
             let mask = load_mask_from_file(&specialty, &model)?;
@@ -120,10 +132,17 @@ fn main() -> anyhow::Result<()> {
             }
 
             println!();
-            println!("{}", "Use 'to-skill' to create a Claude Skill from this mask".dimmed());
+            println!(
+                "{}",
+                "Use 'to-skill' to create a Claude Skill from this mask".dimmed()
+            );
         }
 
-        Commands::ToSkill { specialty, model, output } => {
+        Commands::ToSkill {
+            specialty,
+            model,
+            output,
+        } => {
             let mask = load_mask_from_file(&specialty, &model)?;
 
             let skill_name = specialty.clone();
@@ -148,7 +167,10 @@ fn main() -> anyhow::Result<()> {
             println!();
             println!("{}", "Usage:".bold());
             println!("  Claude will auto-invoke when relevant");
-            println!("  Or manually: {}", format!("Skill tool with command '{}'", skill_name).dimmed());
+            println!(
+                "  Or manually: {}",
+                format!("Skill tool with command '{}'", skill_name).dimmed()
+            );
         }
     }
 

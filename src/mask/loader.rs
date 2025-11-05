@@ -1,20 +1,16 @@
+use crate::{Mask, ModelProvider};
+use anyhow::{Context, Result};
 use std::fs;
 use std::path::Path;
-use anyhow::{Context, Result};
-use crate::{Mask, ModelProvider};
 
 pub fn load_mask_from_file(specialty: &str, model: &str) -> Result<Mask> {
     let path = format!("masks/{}/{}.md", specialty, model);
-    let content = fs::read_to_string(&path)
-        .with_context(|| format!("Failed to read mask file: {}", path))?;
+    let content =
+        fs::read_to_string(&path).with_context(|| format!("Failed to read mask file: {}", path))?;
 
     let model_provider = parse_model_provider(model)?;
 
-    Ok(Mask::new(
-        specialty.to_string(),
-        model_provider,
-        content,
-    ))
+    Ok(Mask::new(specialty.to_string(), model_provider, content))
 }
 
 fn parse_model_provider(model: &str) -> Result<ModelProvider> {

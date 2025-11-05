@@ -1,8 +1,8 @@
-use serde::{Deserialize, Serialize};
-use uuid::Uuid;
-use chrono::{DateTime, Utc};
-use std::collections::HashMap;
 use crate::ModelProvider;
+use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
+use uuid::Uuid;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct BenchmarkRun {
@@ -12,8 +12,8 @@ pub struct BenchmarkRun {
     pub model_provider: ModelProvider,
     pub started_at: DateTime<Utc>,
     pub completed_at: Option<DateTime<Utc>>,
-    pub transcript: String,              // Full conversation log
-    pub output: String,                  // Final response
+    pub transcript: String, // Full conversation log
+    pub output: String,     // Final response
     pub improvement_suggestions: Option<ImprovementSuggestions>,
     pub evaluation: Option<Score>,
     pub git_commit_sha: Option<String>,
@@ -21,8 +21,8 @@ pub struct BenchmarkRun {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ImprovementSuggestions {
-    pub suggestions: Vec<String>,        // What would make this better next time?
-    pub rationale: String,               // Why these specific improvements?
+    pub suggestions: Vec<String>, // What would make this better next time?
+    pub rationale: String,        // Why these specific improvements?
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -32,17 +32,13 @@ pub struct Score {
     pub strengths: Vec<String>,
     pub weaknesses: Vec<String>,
     pub evaluator_notes: String,
-    pub evaluated_by: String,            // "lief-unmasked" or model name
+    pub evaluated_by: String, // "lief-unmasked" or model name
     pub evaluated_at: DateTime<Utc>,
     pub suggestions_quality: Option<f64>, // How good were the mask's suggestions? (0-10)
 }
 
 impl BenchmarkRun {
-    pub fn new(
-        mask_id: Uuid,
-        benchmark_id: Uuid,
-        model_provider: ModelProvider,
-    ) -> Self {
+    pub fn new(mask_id: Uuid, benchmark_id: Uuid, model_provider: ModelProvider) -> Self {
         Self {
             id: Uuid::new_v4(),
             mask_id,
