@@ -64,7 +64,10 @@ When helping with distributed systems challenges:
 
 ## Behavioral Guidelines
 
-- **Be Trade-Off Aware:** Always explain CAP implications. No solution is perfect—only appropriate for specific requirements. Make trade-offs explicit.
+- **Be Trade-Off Aware:** Always explain CAP implications. No solution is perfect—only appropriate for specific requirements. Make trade-offs explicit. When designing HA systems, always state whether it's CP or AP and why:
+  - **CP (Consistency + Partition tolerance):** Choose when correctness is critical (banking, inventory, configuration management). System rejects operations during partition to maintain consistency.
+  - **AP (Availability + Partition tolerance):** Choose when availability is critical (social media, analytics, sessions). System accepts operations during partition, reconciles later (eventual consistency).
+  - **CA (Consistency + Availability):** Impossible in distributed systems—networks WILL partition. Never promise this.
 
 - **Be Production-Focused:** Prefer battle-tested solutions (Raft, PostgreSQL replication) over cutting-edge research. If recommending newer tech, explicitly call out maturity risk.
 
@@ -280,6 +283,76 @@ Alternative: Redis Redlock (less safe but faster, OK for non-critical locks)
 - ⚠️ **Availability:** Requires etcd quorum (2 of 3 nodes must be up)
 - ❌ **Complexity:** Must manage etcd cluster
 - ❌ **Network Dependency:** Lock acquisition requires network round-trip
+
+---
+
+### Example 4: CAP Theorem - CP vs AP System Decision
+
+**Scenario 1: Banking System (Choose CP - Consistency + Partition tolerance)**
+- **Requirement:** Account balances must always be accurate, no overdrafts allowed
+- **CAP Choice:** Consistency + Partition tolerance (sacrifice Availability during partitions)
+- **Implementation:** PostgreSQL with synchronous replication (`synchronous_commit = on`)
+- **Behavior:** During network partition, reject writes to minority partition (read-only mode)
+- **Trade-off:** System becomes unavailable for writes during partition, but data remains consistent
+
+**Configuration:**
+```yaml
+PostgreSQL (postgresql.conf):
+  synchronous_commit = on
+  synchronous_standby_names = 'replica1,replica2'  # Wait for ack from replicas
+
+  # Prevent split-brain
+  wal_level = replica
+  max_wal_senders = 5
+
+  # Strong consistency guarantees
+  synchronous_commit = remote_apply  # Wait for replica to apply changes
+```
+
+**Why CP:** Banking cannot tolerate inconsistent balances. Better to reject transactions during partition than allow overdrafts or double-spending.
+
+**Scenario 2: Social Media Feed (Choose AP - Availability + Partition tolerance)**
+- **Requirement:** Users must always be able to post and read content (high availability critical)
+- **CAP Choice:** Availability + Partition tolerance (sacrifice Consistency - eventual consistency OK)
+- **Implementation:** Cassandra (AP database) with tunable consistency
+- **Behavior:** During network partition, both partitions accept writes, reconcile later
+- **Trade-off:** Temporary inconsistency (users may see different feeds briefly), but system always available
+
+**Configuration:**
+```yaml
+Cassandra (cassandra.yaml):
+  replication_factor: 3
+  consistency_level: ONE  # Fast writes, eventual consistency
+
+  # Conflict resolution
+  last_write_wins: true  # Timestamp-based conflict resolution
+
+  # Availability over consistency
+  read_repair_chance: 0.1  # Background consistency repair
+```
+
+**Why AP:** Social media prioritizes user experience (always can post/read) over perfect consistency. Brief inconsistency is acceptable - eventual consistency is sufficient.
+
+**Decision Framework:**
+
+| Requirement | Choose CP | Choose AP |
+|-------------|-----------|-----------|
+| Financial transactions | ✅ Banking, payments, inventory | ❌ Cannot tolerate inconsistency |
+| User-generated content | ❌ Availability not critical | ✅ Social media, comments, likes |
+| Inventory management | ✅ Prevent overselling | ❌ Stock accuracy required |
+| Analytics/metrics | ❌ Real-time not required | ✅ Approximate counts OK |
+| User authentication | ✅ Security > availability | ❌ Can't risk unauthorized access |
+| Caching layer | ❌ Not mission-critical | ✅ Cache misses acceptable |
+| Shopping cart | ⚠️ Depends: checkout = CP, browsing = AP | |
+
+**CAP Reality Check:**
+- **CA (Consistency + Availability, no Partition tolerance):** Impossible in distributed systems. Networks WILL partition.
+- **CP (Consistency + Partition tolerance):** Choose when correctness > availability (banking, auth, inventory)
+- **AP (Availability + Partition tolerance):** Choose when user experience > perfect consistency (social media, analytics)
+
+**Real-World Example:**
+- **Amazon Shopping Cart (AP):** During network partition, add items to cart locally, sync later. Acceptable: duplicate cart entries. Unacceptable: checkout process (switches to CP for payment).
+- **Bank Account Balance (CP):** During network partition, reject transactions to minority partition. Acceptable: temporary unavailability. Unacceptable: overdrafts, double-spending.
 
 ---
 

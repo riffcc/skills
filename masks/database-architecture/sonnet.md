@@ -383,6 +383,137 @@ Complexity:
 
 ---
 
+### Example 4: Replication Failure Handling
+
+**Problem:**
+PostgreSQL primary-replica setup experiencing replication failures.
+
+**Failure Scenario 1: Primary Database Fails (Failover)**
+
+**Detection:**
+```bash
+# Replica detects primary is unreachable
+pg_isready -h primary-db -p 5432
+# Returns: no response
+
+# Check replication status
+SELECT * FROM pg_stat_wal_receiver;
+# Shows: status = 'stopped', last_msg_receipt_time > 30 seconds ago
+```
+
+**Failover Procedure:**
+```bash
+# 1. Promote replica to primary
+pg_ctl promote -D /var/lib/postgresql/data
+
+# 2. Verify promotion
+psql -c "SELECT pg_is_in_recovery();"
+# Should return: f (false = now primary)
+
+# 3. Update application connection strings to point to new primary
+# 4. Rebuild old primary as new replica (when it comes back)
+```
+
+**Trade-offs:**
+- ✅ Application downtime: < 30 seconds (detection + promotion)
+- ✅ Zero data loss (if synchronous_commit = on)
+- ⚠️ Manual intervention required (or use Patroni for automatic failover)
+
+---
+
+**Failure Scenario 2: Split-Brain (Both Nodes Think They're Primary)**
+
+**How It Happens:**
+- Network partition between primary and replica
+- Replica promoted to primary (failover)
+- Network heals, old primary comes back online
+- **Both databases accepting writes** → data divergence
+
+**Prevention:**
+```yaml
+# Use fencing/STONITH (Shoot The Other Node In The Head)
+postgresql.conf:
+  synchronous_standby_names = 'replica1'  # Requires replica ack
+
+# Primary cannot accept writes without replica connection
+# If network partitions, primary goes read-only
+
+# Alternative: Use Patroni with etcd for distributed consensus
+# Patroni ensures only ONE primary via leader election
+```
+
+**Detection:**
+```sql
+-- Check if node thinks it's primary
+SELECT pg_is_in_recovery();
+
+-- Check replication slots
+SELECT * FROM pg_replication_slots;
+
+-- If both nodes show NOT in recovery → split-brain detected
+```
+
+**Resolution:**
+1. **Stop writes to both nodes immediately**
+2. **Designate one node as source of truth** (usually the one with most recent data)
+3. **Rebuild other node from backup** (data on rejected node is LOST)
+4. **Restart replication** from designated primary
+
+**Why This Matters:**
+Split-brain causes **data corruption**. Two users update same row on different "primaries" → conflicting data. This is why **fencing** or **distributed consensus** (Patroni + etcd) is critical for HA databases.
+
+---
+
+**Failure Scenario 3: Replication Lag Exceeds Threshold**
+
+**Detection:**
+```sql
+-- Monitor replication lag on primary
+SELECT
+  client_addr,
+  application_name,
+  state,
+  sync_state,
+  pg_wal_lsn_diff(pg_current_wal_lsn(), replay_lsn) AS lag_bytes,
+  EXTRACT(EPOCH FROM (now() - pg_last_xact_replay_timestamp())) AS lag_seconds
+FROM pg_stat_replication;
+
+-- Alert if lag_seconds > 10 (threshold depends on workload)
+```
+
+**Common Causes:**
+1. **Network congestion:** replication traffic throttled
+2. **Replica overloaded:** CPU/disk I/O saturated
+3. **Long-running transactions:** Blocking replication apply
+
+**Resolution:**
+```bash
+# 1. Check replica system load
+top
+iostat -x 1
+
+# 2. Check for blocking queries on replica
+SELECT pid, query, state, wait_event
+FROM pg_stat_activity
+WHERE state != 'idle'
+ORDER BY query_start;
+
+# 3. Increase wal_sender bandwidth (if network is cause)
+# postgresql.conf:
+max_wal_senders = 10
+wal_keep_size = '1GB'  # Prevent WAL deletion if replica lags
+
+# 4. If replica hopelessly behind, rebuild from fresh backup
+```
+
+**Trade-offs:**
+- Lag < 100ms: Safe for most workloads
+- Lag 100ms - 1s: Acceptable for non-critical reads
+- Lag > 1s: Dangerous - replica data significantly stale
+- Lag > 10s: **Critical** - investigate immediately
+
+---
+
 ## Validation Strategy
 
 Before implementing database changes:
