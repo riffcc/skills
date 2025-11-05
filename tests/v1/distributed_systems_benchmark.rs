@@ -19,7 +19,10 @@ fn benchmark_distributed_systems_structure() {
     assert!(has_identity, "Mask must have Identity section");
     assert!(has_expertise, "Mask must have Core Expertise section");
     assert!(has_mission, "Mask must have Your Mission section");
-    assert!(has_guidelines, "Mask must have Behavioral Guidelines section");
+    assert!(
+        has_guidelines,
+        "Mask must have Behavioral Guidelines section"
+    );
     assert!(has_examples, "Mask must have Examples section");
 
     println!("✓ Structure: 5/5 required sections present");
@@ -29,13 +32,13 @@ fn benchmark_distributed_systems_structure() {
 fn benchmark_distributed_systems_cap_theorem() {
     println!("\n=== BENCHMARK: Distributed Systems - CAP Theorem Knowledge ===\n");
 
-    let mask = load_mask_from_file("distributed-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("distributed-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
     // Check for CAP theorem coverage
-    let has_cap = content.contains("CAP") || content.contains("Consistency, Availability, Partition");
+    let has_cap =
+        content.contains("CAP") || content.contains("Consistency, Availability, Partition");
     let has_consistency = content.contains("consistency") && content.contains("Consistency");
     let has_availability = content.contains("availability") && content.contains("Availability");
     let has_partition_tolerance = content.contains("partition") || content.contains("Partition");
@@ -43,8 +46,14 @@ fn benchmark_distributed_systems_cap_theorem() {
 
     assert!(has_cap, "Mask should mention CAP theorem");
     assert!(has_consistency, "Mask should discuss consistency models");
-    assert!(has_availability, "Mask should discuss availability patterns");
-    assert!(has_partition_tolerance, "Mask should discuss partition tolerance");
+    assert!(
+        has_availability,
+        "Mask should discuss availability patterns"
+    );
+    assert!(
+        has_partition_tolerance,
+        "Mask should discuss partition tolerance"
+    );
     assert!(has_tradeoffs, "Mask should discuss trade-offs");
 
     println!("✓ CAP Theorem: 5/5 concepts covered");
@@ -54,8 +63,7 @@ fn benchmark_distributed_systems_cap_theorem() {
 fn benchmark_distributed_systems_consensus() {
     println!("\n=== BENCHMARK: Distributed Systems - Consensus Algorithms ===\n");
 
-    let mask = load_mask_from_file("distributed-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("distributed-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -79,15 +87,15 @@ fn benchmark_distributed_systems_consensus() {
 fn benchmark_distributed_systems_observability() {
     println!("\n=== BENCHMARK: Distributed Systems - Observability Stack ===\n");
 
-    let mask = load_mask_from_file("distributed-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("distributed-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
     // Check for observability tools
     let has_prometheus = content.contains("Prometheus");
     let has_grafana = content.contains("Grafana");
-    let has_tracing = content.contains("tracing") || content.contains("Jaeger") || content.contains("Zipkin");
+    let has_tracing =
+        content.contains("tracing") || content.contains("Jaeger") || content.contains("Zipkin");
     let has_monitoring = content.contains("Monitoring") || content.contains("monitoring");
     let has_metrics = content.contains("metrics");
 
@@ -104,8 +112,7 @@ fn benchmark_distributed_systems_observability() {
 fn benchmark_distributed_systems_rust_tdd() {
     println!("\n=== BENCHMARK: Distributed Systems - Rust + TDD Best Practices ===\n");
 
-    let mask = load_mask_from_file("distributed-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("distributed-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -117,8 +124,14 @@ fn benchmark_distributed_systems_rust_tdd() {
 
     assert!(has_rust, "Mask should mention Rust development");
     assert!(has_tdd, "Mask should mention Test-Driven Development");
-    assert!(has_cargo_tests || has_tdd, "Mask should reference Cargo tests or TDD");
-    assert!(has_precommit || has_tdd, "Mask should reference pre-commit hooks or TDD");
+    assert!(
+        has_cargo_tests || has_tdd,
+        "Mask should reference Cargo tests or TDD"
+    );
+    assert!(
+        has_precommit || has_tdd,
+        "Mask should reference pre-commit hooks or TDD"
+    );
 
     println!("✓ Rust+TDD: 4/4 best practices covered");
 }
@@ -127,8 +140,7 @@ fn benchmark_distributed_systems_rust_tdd() {
 fn benchmark_distributed_systems_failure_modes() {
     println!("\n=== BENCHMARK: Distributed Systems - Failure Mode Analysis ===\n");
 
-    let mask = load_mask_from_file("distributed-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("distributed-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -136,13 +148,20 @@ fn benchmark_distributed_systems_failure_modes() {
     let has_spof = content.contains("SPOF") || content.contains("single point of failure");
     let has_split_brain = content.contains("split-brain") || content.contains("split brain");
     let has_network_partition = content.contains("partition");
-    let has_failure_detection = content.contains("failure detection") || content.contains("health check");
+    let has_failure_detection =
+        content.contains("failure detection") || content.contains("health check");
     let has_recovery = content.contains("recovery") || content.contains("failover");
 
     assert!(has_spof, "Mask should discuss single points of failure");
     assert!(has_split_brain, "Mask should discuss split-brain scenarios");
-    assert!(has_network_partition, "Mask should discuss network partitions");
-    assert!(has_failure_detection, "Mask should discuss failure detection");
+    assert!(
+        has_network_partition,
+        "Mask should discuss network partitions"
+    );
+    assert!(
+        has_failure_detection,
+        "Mask should discuss failure detection"
+    );
     assert!(has_recovery, "Mask should discuss recovery strategies");
 
     println!("✓ Failure Modes: 5/5 critical scenarios covered");
@@ -152,8 +171,7 @@ fn benchmark_distributed_systems_failure_modes() {
 fn benchmark_distributed_systems_concrete_tools() {
     println!("\n=== BENCHMARK: Distributed Systems - Concrete Tool References ===\n");
 
-    let mask = load_mask_from_file("distributed-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("distributed-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -173,5 +191,8 @@ fn benchmark_distributed_systems_concrete_tools() {
         specific_tool_count
     );
 
-    println!("✓ Concrete Tools: {}/4 major tools referenced", specific_tool_count);
+    println!(
+        "✓ Concrete Tools: {}/4 major tools referenced",
+        specific_tool_count
+    );
 }

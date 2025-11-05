@@ -1,7 +1,7 @@
 //! Validation functions for masks
 //! Can be used by Mask Improver to validate masks during creation/improvement
 
-use crate::*;
+use crate::mask::load_mask_from_file;
 
 /// Result of mask validation
 #[derive(Debug, Clone)]

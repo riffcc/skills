@@ -63,7 +63,7 @@ fn main() -> anyhow::Result<()> {
 
             if masks.is_empty() {
                 println!("{}", "No masks found".yellow());
-                println!("  Searched: ~/.claude/masks/ and ./masks/".dimmed());
+                println!("{}", "  Searched: ~/.claude/masks/ and ./masks/".dimmed());
                 return Ok(());
             }
 

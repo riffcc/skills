@@ -46,11 +46,31 @@ cargo build --release
 cargo test -- --nocapture
 ```
 
-### Use the CLI
+### Use via Palace (Recommended)
 
 ```bash
-# List all available masks
+# Create a new private mask (saved to ~/.claude/masks/)
+pal skill new my-specialist --private
+
+# Create a new repo mask (saved to ./masks/, will be committed)
+pal skill new my-specialist
+
+# List all masks (shows both private and repo masks)
+pal skill list
+
+# Install a mask as a Claude Skill
+pal skill install my-specialist
+```
+
+### Use the CLI Directly
+
+```bash
+# List all available masks (shows [private] vs [repo])
 ./target/release/palace-skills list
+
+# Create new mask
+./target/release/palace-skills new my-specialist           # Private by default
+./target/release/palace-skills new my-specialist --repo    # Create in repo
 
 # Preview a mask (lightweight, no invocation)
 ./target/release/palace-skills preview mask-improver sonnet
@@ -61,6 +81,11 @@ cargo test -- --nocapture
 # Convert mask to Claude Skill (auto-invocation)
 ./target/release/palace-skills to-skill mask-improver sonnet
 ```
+
+**Private vs Repo Masks:**
+- **Private masks** (`~/.claude/masks/`) - Never committed to git, personal use only
+- **Repo masks** (`./masks/`) - Committed to repo, shared publicly
+- Private masks override repo masks with the same name (search priority)
 
 ### Use the TUI Viewer
 
