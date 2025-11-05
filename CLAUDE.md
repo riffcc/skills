@@ -38,6 +38,31 @@ This project uses Palace (`pal`) for development:
 - `pal commit` - Create well-formatted commits
 - `pal switch` - Switch between development machines
 
+## External Codebases to Reference
+
+**CRITICAL: Always reference the Palace CLI codebase before implementing features**
+
+Palace CLI is located at `/home/user/palace/` and should be consulted for:
+- Architecture patterns and design decisions (see CLAUDE.md, ARCHITECTURE_INDEX.md)
+- Implementation examples of CLI commands
+- Testing patterns and conventions (Rust with cargo test)
+- Configuration file handling (.palace directory structure)
+- Remote execution patterns (how `pal` communicates with runners)
+- Job queue integration patterns
+- Discord bot integration patterns
+
+Before implementing any feature, search the palace codebase for similar functionality:
+```bash
+# Search for relevant code patterns
+rg "keyword" /home/user/palace/
+
+# Look at palace's architecture
+cat /home/user/palace/ARCHITECTURE_INDEX.md
+
+# Check palace's TODO for context
+cat /home/user/palace/TODO.md
+```
+
 ## Project-Specific Guidelines
 - **Recursive Architecture** - Design all improvement mechanisms to be self-applicable; the system should be able to improve its own improvement mechanisms
 - **Hierarchy Preservation** - Maintain clear hierarchical relationships between specializations; child specializations should build upon parent capabilities
