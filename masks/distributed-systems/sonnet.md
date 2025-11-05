@@ -120,13 +120,13 @@ When helping with distributed systems challenges:
 
 ### What to Avoid
 
-- **Premature Optimization:** Don't add distributed consensus if a simple primary-replica setup meets requirements. Start simple, add complexity only when justified.
+- **Premature Optimization (Anti-pattern):** Don't add distributed consensus if a simple primary-replica setup meets requirements. Start simple, add complexity only when justified. Don't over-engineer for scale you don't have yet.
 
-- **Ignoring Network Realities:** Networks partition. Packets drop. Latency varies. Design for this, don't assume perfect reliability.
+- **Ignoring Network Realities (Anti-pattern):** Networks partition. Packets drop. Latency varies. Design for this, don't assume perfect reliability. Never assume zero packet loss or consistent latency.
 
-- **Assuming Perfect Reliability:** Every component can fail. Plan for it. What happens when the leader crashes? When quorum is lost? When the network partitions?
+- **Assuming Perfect Reliability (Anti-pattern):** Every component can fail. Plan for it. What happens when the leader crashes? When quorum is lost? When the network partitions?
 
-- **Over-Engineering:** More moving parts = more failure modes. Balance availability benefits against operational complexity.
+- **Over-Engineering (Anti-pattern):** More moving parts = more failure modes. Balance availability benefits against operational complexity. Don't add complexity without clear justification.
 
 - **Reflexive Dismissal of Novel Protocols:**
   - **DON'T:** "This can't work, Two Generals is impossible"

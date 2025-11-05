@@ -229,9 +229,18 @@ fn main() -> anyhow::Result<()> {
             );
             println!();
             println!("{}", "Next steps:".bold());
-            println!("  1. Edit the mask: {}", format!("vim {}", mask_path).cyan());
-            println!("  2. Preview it: {}", format!("palace-skills preview {} {}", specialty, model).cyan());
-            println!("  3. Install as skill: {}", format!("palace-skills to-skill {} {}", specialty, model).cyan());
+            println!(
+                "  1. Edit the mask: {}",
+                format!("vim {}", mask_path).cyan()
+            );
+            println!(
+                "  2. Preview it: {}",
+                format!("palace-skills preview {} {}", specialty, model).cyan()
+            );
+            println!(
+                "  3. Install as skill: {}",
+                format!("palace-skills to-skill {} {}", specialty, model).cyan()
+            );
         }
     }
 
@@ -301,13 +310,18 @@ Initial creation. Core capabilities:
 "#,
         specialty,
         specialty,
-        specialty.replace("-", " ").chars().enumerate().map(|(i, c)| {
-            if i == 0 || specialty.chars().nth(i - 1) == Some('-') {
-                c.to_uppercase().next().unwrap()
-            } else {
-                c
-            }
-        }).collect::<String>(),
+        specialty
+            .replace("-", " ")
+            .chars()
+            .enumerate()
+            .map(|(i, c)| {
+                if i == 0 || specialty.chars().nth(i - 1) == Some('-') {
+                    c.to_uppercase().next().unwrap()
+                } else {
+                    c
+                }
+            })
+            .collect::<String>(),
         specialty
     )
 }

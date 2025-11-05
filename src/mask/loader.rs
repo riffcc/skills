@@ -1,7 +1,7 @@
 use crate::{Mask, ModelProvider};
 use anyhow::{Context, Result};
 use std::fs;
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 /// Get mask search paths in priority order:
 /// 1. ~/.claude/masks/ (private, highest priority)
@@ -85,19 +85,27 @@ pub fn list_masks() -> Result<Vec<(String, String, String)>> {
             "repo"
         };
 
-        for specialty_entry in fs::read_dir(&base_path).unwrap_or_else(|_| fs::read_dir(".").unwrap()) {
+        for specialty_entry in
+            fs::read_dir(&base_path).unwrap_or_else(|_| fs::read_dir(".").unwrap())
+        {
             let specialty_entry = match specialty_entry {
                 Ok(e) => e,
                 Err(_) => continue,
             };
 
-            if !specialty_entry.file_type().map(|t| t.is_dir()).unwrap_or(false) {
+            if !specialty_entry
+                .file_type()
+                .map(|t| t.is_dir())
+                .unwrap_or(false)
+            {
                 continue;
             }
 
             let specialty = specialty_entry.file_name().to_string_lossy().to_string();
 
-            for mask_entry in fs::read_dir(specialty_entry.path()).unwrap_or_else(|_| fs::read_dir(".").unwrap()) {
+            for mask_entry in
+                fs::read_dir(specialty_entry.path()).unwrap_or_else(|_| fs::read_dir(".").unwrap())
+            {
                 let mask_entry = match mask_entry {
                     Ok(e) => e,
                     Err(_) => continue,

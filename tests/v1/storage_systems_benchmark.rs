@@ -19,7 +19,10 @@ fn benchmark_storage_systems_structure() {
     assert!(has_identity, "Mask must have Identity section");
     assert!(has_expertise, "Mask must have Core Expertise section");
     assert!(has_mission, "Mask must have Your Mission section");
-    assert!(has_guidelines, "Mask must have Behavioral Guidelines section");
+    assert!(
+        has_guidelines,
+        "Mask must have Behavioral Guidelines section"
+    );
     assert!(has_examples, "Mask must have Examples section");
 
     println!("✓ Structure: 5/5 required sections present");
@@ -29,8 +32,7 @@ fn benchmark_storage_systems_structure() {
 fn benchmark_storage_systems_moosefs() {
     println!("\n=== BENCHMARK: Storage Systems - MooseFS Expertise ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -38,9 +40,9 @@ fn benchmark_storage_systems_moosefs() {
     let has_moosefs = content.contains("MooseFS");
     let has_master_chunk = content.contains("master") && content.contains("chunk");
     let has_replication = content.contains("replication");
-    let moosefs_priority = content.contains("Prioritize MooseFS") ||
-                          content.contains("MooseFS as") ||
-                          content.contains("proven reliable");
+    let moosefs_priority = content.contains("Prioritize MooseFS")
+        || content.contains("MooseFS as")
+        || content.contains("proven reliable");
 
     assert!(has_moosefs, "Mask must mention MooseFS");
     assert!(moosefs_priority, "Mask should prioritize/emphasize MooseFS");
@@ -52,15 +54,17 @@ fn benchmark_storage_systems_moosefs() {
 fn benchmark_storage_systems_no_glusterfs() {
     println!("\n=== BENCHMARK: Storage Systems - GlusterFS Removal ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
     // Verify GlusterFS is NOT present (was removed per user request)
     let has_glusterfs = content.contains("GlusterFS") || content.contains("Gluster");
 
-    assert!(!has_glusterfs, "Mask should NOT mention GlusterFS (deprecated/removed)");
+    assert!(
+        !has_glusterfs,
+        "Mask should NOT mention GlusterFS (deprecated/removed)"
+    );
 
     println!("✓ GlusterFS: Successfully removed (deprecated tech)");
 }
@@ -69,19 +73,21 @@ fn benchmark_storage_systems_no_glusterfs() {
 fn benchmark_storage_systems_distributed_fs() {
     println!("\n=== BENCHMARK: Storage Systems - Distributed File Systems ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
     // Check distributed file system coverage
-    let has_distributed_fs = content.contains("Distributed File System") ||
-                            content.contains("distributed file system");
+    let has_distributed_fs =
+        content.contains("Distributed File System") || content.contains("distributed file system");
     let has_moosefs = content.contains("MooseFS");
     let has_ceph = content.contains("Ceph");
     let has_nfs = content.contains("NFS");
 
-    assert!(has_distributed_fs || has_moosefs, "Mask should cover distributed file systems");
+    assert!(
+        has_distributed_fs || has_moosefs,
+        "Mask should cover distributed file systems"
+    );
 
     let fs_count = [has_moosefs, has_ceph, has_nfs]
         .iter()
@@ -95,8 +101,7 @@ fn benchmark_storage_systems_distributed_fs() {
 fn benchmark_storage_systems_block_storage() {
     println!("\n=== BENCHMARK: Storage Systems - Block Storage ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -111,7 +116,11 @@ fn benchmark_storage_systems_block_storage() {
         .filter(|&&x| x)
         .count();
 
-    assert!(score >= 2, "Mask should cover block storage concepts (found {}/ 4)", score);
+    assert!(
+        score >= 2,
+        "Mask should cover block storage concepts (found {}/ 4)",
+        score
+    );
 
     println!("✓ Block Storage: {}/4 concepts covered", score);
 }
@@ -120,19 +129,21 @@ fn benchmark_storage_systems_block_storage() {
 fn benchmark_storage_systems_object_storage() {
     println!("\n=== BENCHMARK: Storage Systems - Object Storage ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
     // Check object storage coverage
-    let has_object_storage = content.contains("object storage") || content.contains("Object Storage");
+    let has_object_storage =
+        content.contains("object storage") || content.contains("Object Storage");
     let has_s3 = content.contains("S3") || content.contains("Amazon S3");
     let has_minio = content.contains("MinIO") || content.contains("Minio");
     let has_ceph_object = content.contains("Ceph") && content.contains("object");
 
-    assert!(has_object_storage || has_s3 || has_minio,
-            "Mask should cover object storage");
+    assert!(
+        has_object_storage || has_s3 || has_minio,
+        "Mask should cover object storage"
+    );
 
     let score = [has_object_storage, has_s3, has_minio, has_ceph_object]
         .iter()
@@ -146,8 +157,7 @@ fn benchmark_storage_systems_object_storage() {
 fn benchmark_storage_systems_performance() {
     println!("\n=== BENCHMARK: Storage Systems - Performance & Reliability ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -158,12 +168,22 @@ fn benchmark_storage_systems_performance() {
     let has_reliability = content.contains("reliability") || content.contains("durability");
     let has_replication = content.contains("replication");
 
-    let score = [has_performance, has_throughput, has_latency, has_reliability, has_replication]
-        .iter()
-        .filter(|&&x| x)
-        .count();
+    let score = [
+        has_performance,
+        has_throughput,
+        has_latency,
+        has_reliability,
+        has_replication,
+    ]
+    .iter()
+    .filter(|&&x| x)
+    .count();
 
-    assert!(score >= 3, "Mask should cover performance/reliability (found {}/5)", score);
+    assert!(
+        score >= 3,
+        "Mask should cover performance/reliability (found {}/5)",
+        score
+    );
 
     println!("✓ Performance/Reliability: {}/5 concepts covered", score);
 }
@@ -172,8 +192,7 @@ fn benchmark_storage_systems_performance() {
 fn benchmark_storage_systems_rust_tdd() {
     println!("\n=== BENCHMARK: Storage Systems - Rust + TDD Best Practices ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -183,7 +202,10 @@ fn benchmark_storage_systems_rust_tdd() {
     let has_cargo = content.contains("Cargo");
     let has_precommit = content.contains("pre-commit");
 
-    assert!(has_rust || has_tdd, "Mask should mention Rust+TDD best practices");
+    assert!(
+        has_rust || has_tdd,
+        "Mask should mention Rust+TDD best practices"
+    );
 
     let score = [has_rust, has_tdd, has_cargo, has_precommit]
         .iter()
@@ -197,8 +219,7 @@ fn benchmark_storage_systems_rust_tdd() {
 fn benchmark_storage_systems_operational() {
     println!("\n=== BENCHMARK: Storage Systems - Operational Concerns ===\n");
 
-    let mask = load_mask_from_file("storage-systems", "sonnet")
-        .expect("Failed to load mask");
+    let mask = load_mask_from_file("storage-systems", "sonnet").expect("Failed to load mask");
 
     let content = &mask.content;
 
@@ -206,15 +227,26 @@ fn benchmark_storage_systems_operational() {
     let has_backup = content.contains("backup") || content.contains("Backup");
     let has_monitoring = content.contains("monitoring") || content.contains("Monitoring");
     let has_scaling = content.contains("scaling") || content.contains("scale");
-    let has_disaster_recovery = content.contains("disaster recovery") || content.contains("recovery");
+    let has_disaster_recovery =
+        content.contains("disaster recovery") || content.contains("recovery");
     let has_capacity = content.contains("capacity");
 
-    let score = [has_backup, has_monitoring, has_scaling, has_disaster_recovery, has_capacity]
-        .iter()
-        .filter(|&&x| x)
-        .count();
+    let score = [
+        has_backup,
+        has_monitoring,
+        has_scaling,
+        has_disaster_recovery,
+        has_capacity,
+    ]
+    .iter()
+    .filter(|&&x| x)
+    .count();
 
-    assert!(score >= 3, "Mask should cover operational concerns (found {}/5)", score);
+    assert!(
+        score >= 3,
+        "Mask should cover operational concerns (found {}/5)",
+        score
+    );
 
     println!("✓ Operations: {}/5 operational concerns covered", score);
 }

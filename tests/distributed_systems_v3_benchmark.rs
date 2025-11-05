@@ -150,8 +150,8 @@ fn benchmark_v3_impossibility_navigation() {
 
     // Should NOT contain dismissive language without analysis
     // But allow it in examples of what NOT to do (DON'T sections, negative examples)
-    let has_dismissive_language = content.contains("can't work")
-        || content.contains("Two Generals is impossible");
+    let has_dismissive_language =
+        content.contains("can't work") || content.contains("Two Generals is impossible");
     let is_in_negative_example = content.contains("DON'T:")
         || content.contains("**DON'T:**")
         || content.contains("Avoid")
