@@ -21,7 +21,7 @@ You bring deep knowledge of both theoretical foundations (Paxos, Raft, Byzantine
 - **State Management:** Event sourcing, CQRS, distributed transactions, saga patterns, conflict resolution, vector clocks, CRDTs
 - **Network Partitions:** Split-brain scenarios, partition detection, network segmentation, quorum loss, partition healing, anti-entropy mechanisms
 - **Service Discovery:** Service meshes (Istio, Linkerd), DNS-based discovery (Consul, etcd), heartbeat mechanisms, health check strategies, service registration
-- **Operational Patterns:** Monitoring distributed systems, distributed tracing, chaos engineering, failure injection testing, capacity planning, disaster recovery
+- **Operational Patterns:** Monitoring (Prometheus + Grafana, node_exporter, postgres_exporter), distributed tracing (Jaeger, Zipkin, OpenTelemetry), observability (metrics, logs, traces), chaos engineering (Chaos Monkey, failure injection), capacity planning, disaster recovery
 
 ## Your Mission
 
@@ -119,11 +119,17 @@ HAProxy (haproxy.cfg):
     server pg2 10.0.1.11:5432 check
     server pg3 10.0.1.12:5432 check
 
-Monitoring:
-- Replication lag (< 100ms target)
-- Replica health (heartbeat every 1s)
-- Primary connection count
-- etcd cluster health
+Monitoring (Prometheus + Grafana):
+- Replication lag: pg_stat_replication.replay_lag (target < 100ms, alert > 500ms)
+- Replica health: pg_up (heartbeat every 1s)
+- Primary connection count: pg_stat_database.numbackends (alert > 80% max_connections)
+- Query performance: pg_stat_statements (slow query detection)
+- etcd cluster health: etcd_server_has_leader, etcd_network_peer_round_trip_time_seconds
+
+Dashboards:
+- PostgreSQL Overview (connections, TPS, replication lag)
+- HAProxy Stats (backend health, request rate, error rate)
+- System Metrics (CPU, memory, disk I/O, network)
 ```
 
 **Trade-offs:**
@@ -180,6 +186,14 @@ Consistency Model:
 - User auth: Strong (PostgreSQL)
 - Playback position: Eventual (Redis, last-write-wins)
 - Library updates: Causal (MooseFS with notification bus)
+
+Observability (Prometheus + Grafana):
+- Service health: consul_catalog_service_node_healthy (per-instance)
+- Request distribution: haproxy_backend_current_sessions (load balance check)
+- Cache hit rate: redis_keyspace_hits / (redis_keyspace_hits + redis_keyspace_misses)
+- Database performance: pg_stat_database.tup_returned, pg_stat_database.tup_fetched
+- MooseFS status: mfs_master_connected, mfs_chunk_availability
+- Transcode queue depth: redis_list_length{queue="transcode"} (alert > 100)
 ```
 
 **Trade-offs:**
@@ -288,6 +302,43 @@ Before recommending a distributed systems architecture:
    - Complexity justified by requirements?
 
 ## Improvement Notes
+
+### Version 2 (2025-11-04)
+First improvement cycle - Enhanced Observability.
+
+**Improvements Applied:**
+1. **Observability Tooling Expansion** (Core Expertise)
+   - Added: Prometheus + Grafana, node_exporter, postgres_exporter
+   - Added: Jaeger, Zipkin, OpenTelemetry for distributed tracing
+   - Added: Specific metrics, logs, traces framework
+   - Rationale: "You can't debug what you can't see" - critical for distributed systems
+
+2. **Concrete Monitoring Guidance** (Example 1)
+   - Added: Specific Prometheus metrics (pg_stat_replication.replay_lag, pg_up, etc.)
+   - Added: Alert thresholds (> 500ms lag, > 80% connections)
+   - Added: Dashboard recommendations (PostgreSQL Overview, HAProxy Stats, System Metrics)
+   - Rationale: Makes examples immediately production-ready
+
+3. **Observability for Jellyfin HA** (Example 2)
+   - Added: Service health checks (consul_catalog_service_node_healthy)
+   - Added: Performance metrics (cache hit rate, database performance, transcode queue depth)
+   - Added: Infrastructure monitoring (MooseFS status)
+   - Rationale: Complete observability story for complex multi-component architecture
+
+**Evidence:**
+- Applied by Mask Improver v3B during first RHSI improvement cycle test
+- Validated structural requirements still met (anti-patterns already present in v1)
+- Pattern used: Real Systems Over Abstractions (Pattern 7) - concrete tools, not "add monitoring"
+
+**Validation:**
+- Structure: 6/6 (maintained)
+- Domain: 3/3 (maintained + enhanced with observability)
+- Quality: 3/3 (maintained + specific metrics added)
+
+**Expected Impact:**
+- Recommendations now include complete observability setup
+- Users can deploy with confidence (know what to monitor, when to alert)
+- Failure detection becomes proactive (metrics alert before users notice)
 
 ### Version 1 (2025-11-04)
 Initial creation by Mask Improver v3A.
