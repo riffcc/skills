@@ -560,24 +560,78 @@ fn benchmark_distributed_systems_cap_theorem() {
 
 ### Benchmark Results Storage
 
-**Current:** Test output to stdout (cargo test --nocapture)
+The test logging infrastructure automatically captures and stores all test results with full context.
 
-**Next:** JSON storage for tracking over time
-```json
-{
-  "mask_id": "uuid",
-  "specialty": "mask-improver",
-  "version": 2,
-  "timestamp": "2025-11-04T23:45:00Z",
-  "benchmarks": {
-    "self_improvement": {
-      "structure_score": "6/6",
-      "v2_features": "3/3",
-      "passed": true
-    }
-  }
+#### Storage Location
+
+All results are stored in `results/{specialty}/` with timestamped files:
+- `{specialty}_v{version}_{timestamp}_{git_hash}.json` - Structured data
+- `{specialty}_v{version}_{timestamp}_{git_hash}.md` - Human-readable report
+
+#### Using the Logger in Tests
+
+```rust
+use palace_skills::*;
+
+#[test]
+fn my_benchmark_test() {
+    // Create logger
+    let mut logger = BenchmarkLogger::new("my-mask", 1);
+
+    // Add context
+    logger.add_context("Testing new features");
+
+    // Run tests and log results
+    logger.log_test("test_name", true, Some("5/5"), "Details here");
+
+    // Save to disk with git context
+    logger.save_results().expect("Failed to save");
 }
 ```
+
+#### Captured Data
+
+Each test run captures:
+- **Git Context:** Commit hash, branch, and tags
+- **Timestamp:** When the test was run
+- **Test Results:** Individual test pass/fail, scores, duration
+- **Overall Score:** Percentage of tests passed
+- **Custom Context:** Notes about the test run
+
+#### Example JSON Output
+
+```json
+{
+  "specialty": "mask-improver",
+  "version": 2,
+  "timestamp": "2025-11-05T12:14:15Z",
+  "git_commit": "55aa41f0...",
+  "git_branch": "main",
+  "git_tag": "v2.0",
+  "test_results": [
+    {
+      "test_name": "structure_validation",
+      "passed": true,
+      "score": "6/6",
+      "duration_ms": 15,
+      "details": "All structural checks passed"
+    }
+  ],
+  "total_score": 100.0,
+  "passed": true,
+  "context": "Testing v2 improvements"
+}
+```
+
+#### Tracking Evolution Over Time
+
+Results are timestamped and include git context, allowing you to:
+- Compare performance across versions
+- Track improvements after changes
+- Correlate results with specific commits
+- Analyze trends in test scores
+
+See `tests/logging_example_test.rs` for complete examples.
 
 ---
 
@@ -590,6 +644,7 @@ fn benchmark_distributed_systems_cap_theorem() {
 - [x] TUI viewer (palace-mask)
 - [x] Bootstrap mask (Mask Improver v2)
 - [x] Benchmark system (cargo tests)
+- [x] Test logging infrastructure (JSON + markdown reports)
 - [x] First recursive self-improvement (v1 → v2)
 - [x] All tests passing (6/6 structure, 3/3 v2 features)
 - [x] Git commit (208e41e)
@@ -604,9 +659,9 @@ fn benchmark_distributed_systems_cap_theorem() {
   - [x] Findings documented: RHSI successfully masters subjective/aesthetic domains
 - [ ] Additional technical specialist masks (more infrastructure, systems)
 - [ ] Full benchmark runner with Claude invocation
-- [ ] Benchmark results storage (JSON → SQLite)
-- [ ] Score visualization in palace-mask viewer
-- [ ] Multi-version comparison
+- [ ] Score visualization in palace-mask viewer (read from JSON logs)
+- [ ] Multi-version comparison and trend analysis
+- [ ] Optional SQLite storage for complex queries
 
 ### 🎯 Next Sprint ($1,000 Credits - 14 Days)
 
