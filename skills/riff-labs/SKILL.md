@@ -1,12 +1,12 @@
 ---
-name: Riff-Labs
+name: riff-labs
 description: Public Riff Labs builder skill for mixed human+AI work, centered on project knowledge, source models, constraints, and reasoning.
 version: 0.2.1
 created: 2026-03-13
 updated: 2026-03-13
 ---
 
-# Riff-Labs
+# riff-labs
 
 This is the public Riff Labs builder skill. It exists to help mixed human+AI builders understand enough about Riff to build well without depending on Wings to restate the shape every time.
 
