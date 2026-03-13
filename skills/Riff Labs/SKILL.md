@@ -12,7 +12,7 @@ This is the public Riff Labs builder skill. It exists to help mixed human+AI bui
 
 It is not a generic coding persona pack. The center of gravity should be Riff project knowledge, system relationships, source models, constraints, and reasoning in a public-safe form.
 
-The first real public model in this rewrite covers `riff.cc`, `Flagship`, `Citadel`, `Neverust`, `Dragonfly`, `Jetpack`, `Palace`, and `Lagoon`, plus the operating documents that explain how those pieces are meant to be built together.
+The first real public model in this rewrite covers `riff.cc`, `Flagship`, `Citadel`, `Neverust`, `Dragonfly`, `Jetpack`, `Palace`, and `Lagoon`, plus the operating documents that explain how those pieces are meant to be built together. In that model, `Codex` is the human-facing agent interface; `Palace` is a callable tool layer underneath it, not the thing humans should have to drive directly.
 
 ## Core Pattern
 

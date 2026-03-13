@@ -24,6 +24,34 @@ When orienting on Riff itself rather than one specific repo, start here:
 
 Then move into the relevant project note under `Projects/`.
 
+## Family Routing
+
+If the work is about the public platform and why it exists, go next to:
+
+- `Projects/riff.cc/riff.cc.md`
+- `Projects/Flagship/Flagship.md`
+- `Projects/Librarian.md`
+- `Projects/Content Curation.md`
+- `Projects/riff.cc/Defederation Model.md`
+
+If the work is about the P2P and storage substrate, go next to:
+
+- `Projects/Citadel/Citadel.md`
+- `Projects/Citadel/Citadel Architecture.md`
+- `Projects/Neverust/Neverust.md`
+
+If the work is about commercial infrastructure and deployment, go next to:
+
+- `Projects/Dragonfly/Dragonfly.md`
+- `Projects/Jetpack.md`
+- `Immortal Infrastructure.md`
+
+If the work is about how Riff is meant to ship across many projects, go next to:
+
+- `Command/Operating Philosophy.md`
+- `Command/SoE Agentic Development.md`
+- `Projects/Palace/Palace.md` for legacy/transitional capability context
+
 ## Project Note Routing
 
 The top-level project notes are the first landing points:

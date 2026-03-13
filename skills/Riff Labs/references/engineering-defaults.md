@@ -26,7 +26,7 @@ For this rewrite, progressive discovery is also a skill-authoring rule:
 - use specs when they clarify multi-part or ambiguous work
 - keep artifacts legible enough for another human or agent to continue
 - treat Riff as parallel streams sharing one architecture, not as a single queue to serialize
-- keep intent and rationale in the vault, execution in Plane, and agent/tool orchestration through Palace-style command surfaces
+- keep intent and rationale in the vault, execution in Plane, and human-facing agent work centered on Codex
 - keep verification automated where possible and keep progress visible rather than trapped in one operator's head
 
 ## Systems Of Engineering
@@ -35,7 +35,8 @@ The operating stack to preserve is:
 
 - Obsidian for intent, rationale, and architectural memory
 - Plane for execution visibility and task state
-- Palace as the unified command surface for agent/tool work
+- Codex as the primary human-facing agent interface
+- Palace as an optional tool surface Codex may call while useful capabilities migrate over time
 - automated testing as a default expectation rather than an optional afterthought
 - open team communication that keeps blockers visible instead of private
 
