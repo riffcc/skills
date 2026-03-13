@@ -1,12 +1,12 @@
 ---
-name: Riff Labs
+name: Riff-Labs
 description: Public Riff Labs builder skill for mixed human+AI work, centered on project knowledge, source models, constraints, and reasoning.
 version: 0.2.1
 created: 2026-03-13
 updated: 2026-03-13
 ---
 
-# Riff Labs
+# Riff-Labs
 
 This is the public Riff Labs builder skill. It exists to help mixed human+AI builders understand enough about Riff to build well without depending on Wings to restate the shape every time.
 
@@ -39,6 +39,7 @@ Read only the references needed for the current task.
 - Prefer reasoning over examples.
 - Keep the skill flexible and model-driven rather than rigid and task-taxonomic.
 - In skill authoring, progressive discovery means modular navigation through `SKILL.md` and reference files, not behavior drift.
+- In low-input or likely voice-transcription contexts, normalize likely transcript variants such as `rift` to `Riff` when the project/company context makes the intended reference clear.
 - Compress hard without stripping away the reasoning needed to generalize.
 - Do not import private operator modeling, private company detail, or lore into the public artifact.
 
