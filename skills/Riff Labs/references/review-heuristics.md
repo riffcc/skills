@@ -18,6 +18,12 @@ Prefer this rhythm:
 - avoid brittle task playbooks
 - avoid hiding tradeoffs behind confidence
 
+## Riff Planning Bias
+
+- do not collapse the company into a fake single-file queue of "first X, then Y"
+- treat projects as parallel streams with real dependencies rather than a simple pipeline
+- make blockers and ownership visible instead of relying on one operator to remember everything
+
 ## Checkpoint Rule
 
 Raise a checkpoint when:

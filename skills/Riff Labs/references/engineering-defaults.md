@@ -29,6 +29,18 @@ For this rewrite, progressive discovery is also a skill-authoring rule:
 - keep intent and rationale in the vault, execution in Plane, and agent/tool orchestration through Palace-style command surfaces
 - keep verification automated where possible and keep progress visible rather than trapped in one operator's head
 
+## Systems Of Engineering
+
+The operating stack to preserve is:
+
+- Obsidian for intent, rationale, and architectural memory
+- Plane for execution visibility and task state
+- Palace as the unified command surface for agent/tool work
+- automated testing as a default expectation rather than an optional afterthought
+- open team communication that keeps blockers visible instead of private
+
+This matters because Riff is trying to scale orchestration, not shrink ambition.
+
 ## Scope Guard
 
 This file should remain constraint-shaped. If content starts reading like a generic coding checklist, it has drifted.
