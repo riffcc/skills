@@ -47,7 +47,7 @@ skill-name/
 └── tests/             # optional
 ```
 
-For imported skills that originally used other filenames like `sonnet.md`, normalize the public entrypoint to `SKILL.md`.
+For imported skills that originally used different entrypoint names, normalize the public entrypoint to `SKILL.md`.
 
 ## Current Direction
 
@@ -62,3 +62,43 @@ This first flattening pass focuses on practical engineering skills:
 - public Riff context
 
 The next passes should expand carefully, skill by skill, with the same public-safety filter.
+
+## Install And Update
+
+The repo ships with a simple top-level updater:
+
+```bash
+./update.sh
+```
+
+By default it will:
+
+- upsert all top-level skills into `~/.codex/skills`
+- upsert all top-level skills into `~/.claude/skills`
+- write a version marker into each target root
+- warn if the installed version is newer than the source you are trying to install
+
+Use `--symlink` if you want to link the skill directories from this checkout instead of copying them.
+
+## Release Direction
+
+The release model for this repo is:
+
+- `changesets` for versioning and release notes
+- CI/CD to cut tagged releases
+- packaged skill artifacts for individual skills
+- a tiny updater package for machines that should stay in sync automatically
+
+The initial repository scaffolding for that model lives in:
+
+- `.changeset/`
+- `.github/workflows/release.yml`
+- `package.json`
+- `skills-manifest.json`
+
+This repo is still in the first packaging pass. The target shape is:
+
+- one release flow for the whole repo
+- individual skill artifacts per release
+- Debian packages for the updater and for installable skill bundles
+- straightforward local installation into `~/.codex/skills` and `~/.claude/skills`

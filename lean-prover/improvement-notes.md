@@ -2,10 +2,10 @@
 
 ### Version 1 (2025-11-05)
 
-Initial creation for testing RHSI's ability to master formal reasoning outside the creator's expertise.
+Initial creation as a formal reasoning skill intended to work well outside the author's primary engineering domain.
 
 **Bootstrap Context:**
-- Created as test case for AGI-like generalization: Can RHSI create specialists in domains requiring genuine reasoning (not just pattern matching)?
+- Created as a test case for whether a skill can become genuinely useful in a domain that demands real symbolic reasoning rather than shallow pattern matching.
 - Lean 4 formal theorem proving chosen because:
   - Objectively measurable (proofs either compile or don't)
   - Requires deep understanding of logic and type theory
