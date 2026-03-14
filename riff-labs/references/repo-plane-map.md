@@ -71,11 +71,18 @@ These are best treated as supporting repos for `LCS` and related code-intelligen
 - `riffcc/flagship.github.io`
 - `riffcc/rifflabs`
 
-These are public-facing docs or site repos around the core product families rather than primary project engines.
+These mostly support:
+
+- `DOCS` / Riff Docs
+- `FLAG` / Flagship
+- `FLY` / Dragonfly
+
+They are public-facing docs or site repos around the core product families rather than primary project engines.
 
 ### Product Family Support
 
 - `riffcc/lens-sdk`
+- `riffcc/lens-node`
 - `riffcc/orbiter-core`
 - `riffcc/river`
 - `riffcc/rosa`
@@ -91,6 +98,11 @@ These sit around the main product families:
 - `JETPACK` / Jetpack
 
 They are important, but they are usually not the first repo a new builder should start from unless the task clearly points there.
+
+The important historical correction here is:
+
+- the old Lens line is not a separate active project family anymore
+- `lens-sdk` and `lens-node` should be understood as older public repo surface around work that conceptually folded into the Citadel direction
 
 ## Plane Projects Without A Clear Public Repo
 
