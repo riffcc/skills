@@ -2,7 +2,9 @@
 
 This repo is moving toward a simple, boring release model:
 
+- commits written with `Conventional Commits`
 - versioned with `changesets`
+- released with `Semantic Versioning`
 - released by CI
 - installable locally with `./update.sh`
 - distributable as:
@@ -84,13 +86,14 @@ This keeps skill installation modular and makes selective installs easy.
 CI/CD should eventually do all of the following:
 
 1. validate the repo shape
-2. validate skill manifests
-3. run `changesets`
-4. version the repo
-5. build `.skill` artifacts
-6. build updater `.deb`
-7. build per-skill `.deb` packages
-8. publish release assets
+2. validate Conventional Commit usage
+3. validate skill manifests
+4. run `changesets`
+5. version the repo
+6. build `.skill` artifacts
+7. build updater `.deb`
+8. build per-skill `.deb` packages
+9. publish release assets
 
 ## First Practical Milestones
 

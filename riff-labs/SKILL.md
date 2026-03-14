@@ -37,6 +37,12 @@ Read only the references needed for the current task.
 - Center Riff knowledge and Riff constraints, not generic execution theater.
 - Prefer constraints over rules.
 - Prefer reasoning over examples.
+- Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) in Riff Labs repos.
+- Treat [Changesets](https://github.com/changesets/changesets) as the release/versioning layer that pairs with Conventional Commits, not as a separate optional system.
+- Use [Semantic Versioning](https://semver.org/) for published versions and release expectations.
+- Prefer working branches in the form `[TICKET-ID]/ghusername/topic-name` so ownership and intent stay visible to humans and agents.
+- Treat `dev`, `staging`, `main`, and `release` as promotion streams with increasing stability rather than as interchangeable long-lived dumping grounds.
+- Allow polite history cleanup over time when that keeps the history legible and closer to the real work that happened.
 - Keep the skill flexible and model-driven rather than rigid and task-taxonomic.
 - In skill authoring, progressive discovery means modular navigation through `SKILL.md` and reference files, not behavior drift.
 - In low-input or likely voice-transcription contexts, normalize likely transcript variants such as `rift` to `Riff` when the project/company context makes the intended reference clear.
@@ -54,4 +60,4 @@ This first rewrite pass is still intentionally narrow, but it is no longer just 
 - sensitive or unstable status narrative should not be treated as public skill knowledge
 - examples and templates are still deferred
 - the public vault should expand only through small reviewed changes that do not outrun the skill
-- cross-repo conventions are deferred until intentionally grounded later
+- cross-repo conventions now include branch naming, promotion streams, Conventional Commits, Changesets, and Semantic Versioning

@@ -109,3 +109,52 @@ Project switching still matters, but only as a way to reach the right substrate 
 For now, the skill itself is the sharpest public artifact.
 
 The public Obsidian vault may become a parallel source later, but it should not outrun the skill.
+
+## Repo Conventions
+
+Across Riff Labs repos:
+
+- use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages
+- use [Changesets](https://github.com/changesets/changesets) for versioning and release-note generation where packaging or releases matter
+- use [Semantic Versioning](https://semver.org/) for released versions
+- open work on branches named `[TICKET-ID]/ghusername/topic-name`
+
+Treat these as linked conventions:
+
+- Conventional Commits make change intent easy to scan
+- Changesets make release intent and version bumps explicit
+- Semantic Versioning makes compatibility expectations legible
+
+When both apply, prefer both.
+
+## Branch And Stream Model
+
+Use ticket branches as the default unit of active work:
+
+- one branch per Plane issue or tightly related work item
+- branch ownership is visible in the name
+- agents and humans should eagerly open the appropriate ticket branch rather than doing anonymous work on shared branches
+
+Prefer zipping related work upward into larger review units when that improves clarity:
+
+- related issue branches can be bundled into cycle, module, sprint, or milestone PRs
+- that bundling should clarify momentum, not hide the underlying work items
+
+Promotion streams should be treated as stability levels:
+
+- `dev`: active integration stream; generally the right place to start from, but not guaranteed stable
+- `staging`: changes that appear verified and are being vetted through stronger checks
+- `main`: trustworthy branch that should be safe to build from at any time
+- `release`: release preparation, packaging, and version publication work
+
+These streams are for graduating work upward, not for replacing ticket branches.
+
+## Stale Branches And History
+
+Stale ticket branches are recoverable, not sacred:
+
+- if a branch stops moving and the underlying issue still matters, another human or agent may finish it
+- if the issue no longer matters, the branch can be reaped
+- if cleanup makes the history easier to understand, history may be rewritten politely and deliberately
+
+The goal is visible ownership, reduced duplicate work, and a version history that reflects the actual development arc.

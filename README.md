@@ -34,6 +34,10 @@ The goal is to keep every skill easy to browse, copy, remix, and publish without
 - Do not import pseudoscience, therapy material, or personality artifacts that are only meaningful in one private context.
 - Rewrite skills as they land instead of dumping raw exports when a cleaner public version is easy to produce.
 - Keep support files only when they materially improve the skill.
+- Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) across Riff Labs repos.
+- Pair that commit convention with [Changesets](https://github.com/changesets/changesets) wherever repo releases or versioned artifacts exist.
+- Use [Semantic Versioning](https://semver.org/) for published versions.
+- Prefer branches named `[TICKET-ID]/ghusername/topic-name` in Riff Labs repos so ownership and intent are visible immediately.
 
 ## Layout
 
@@ -84,7 +88,9 @@ Use `--symlink` if you want to link the skill directories from this checkout ins
 
 The release model for this repo is:
 
+- Conventional Commits for commit intent
 - `changesets` for versioning and release notes
+- Semantic Versioning for published versions
 - CI/CD to cut tagged releases
 - packaged skill artifacts for individual skills
 - a tiny updater package for machines that should stay in sync automatically
