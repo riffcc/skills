@@ -60,16 +60,19 @@ for skill in "${skills[@]}"; do
 
   artifact_base="rifflabs-skill-$skill"
   skill_stage="$BUILD_ROOT/$artifact_base-skill"
-  mkdir -p "$skill_stage/$skill"
-  cp -a "$skill_src/." "$skill_stage/$skill/"
-  cat > "$skill_stage/$skill/skill.json" <<EOF
+  mkdir -p "$skill_stage"
+  cp -a "$skill_src/." "$skill_stage/"
+  cat > "$skill_stage/skill.json" <<EOF
 {
   "name": "$skill",
   "version": "$version",
   "package": "$artifact_base"
 }
 EOF
-  tar -czf "$DIST_DIR/$artifact_base-$version.skill" -C "$skill_stage" "$skill"
+  (
+    cd "$skill_stage"
+    zip -qr "$DIST_DIR/$artifact_base-$version.skill" .
+  )
 
   pkg_root="$BUILD_ROOT/$artifact_base-deb"
   mkdir -p "$pkg_root/DEBIAN" "$pkg_root/usr/share/rifflabs-skills/skills/$skill"
