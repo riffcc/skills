@@ -1,0 +1,4 @@
+interface:
+  display_name: "Couch Mode"
+  short_description: "Voice and gamepad-first survey workflow"
+  default_prompt: "Use $couch-mode to drive this session through surveys and low-input interactions."
