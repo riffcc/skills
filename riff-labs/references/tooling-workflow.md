@@ -67,6 +67,12 @@ The top-level project notes are the first landing points:
 
 After the top-level project page, use the architecture and development sub-pages named inside that page rather than wandering blindly through the vault.
 
+When repo routing matters, also check `repo-plane-map.md` so you do not confuse:
+
+- a Plane project with no single public repo
+- a public support repo with a first-class project
+- a private-backed system that should still be described by product name
+
 ## First Repo Set
 
 The first public repo set to ground against is:
@@ -117,7 +123,7 @@ Across Riff Labs repos:
 - use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages
 - use [Changesets](https://github.com/changesets/changesets) for versioning and release-note generation where packaging or releases matter
 - use [Semantic Versioning](https://semver.org/) for released versions
-- open work on branches named `[TICKET-ID]/ghusername/topic-name`
+- open work on branches named `TICKET-ID/ghusername/topic-name`
 
 Treat these as linked conventions:
 

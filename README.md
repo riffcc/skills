@@ -37,7 +37,7 @@ The goal is to keep every skill easy to browse, copy, remix, and publish without
 - Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) across Riff Labs repos.
 - Pair that commit convention with [Changesets](https://github.com/changesets/changesets) wherever repo releases or versioned artifacts exist.
 - Use [Semantic Versioning](https://semver.org/) for published versions.
-- Prefer branches named `[TICKET-ID]/ghusername/topic-name` in Riff Labs repos so ownership and intent are visible immediately.
+- Prefer branches named `TICKET-ID/ghusername/topic-name` in Riff Labs repos so ownership and intent are visible immediately.
 
 ## Layout
 

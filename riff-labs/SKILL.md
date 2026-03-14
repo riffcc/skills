@@ -27,10 +27,11 @@ The goal is not just to generate code. The goal is to make building decisions mo
 Read only the references needed for the current task.
 
 1. `references/project-knowledge.md`
-2. `references/tooling-workflow.md`
-3. `references/engineering-defaults.md`
-4. `references/review-heuristics.md`
-5. `references/public-obsidian.md`
+2. `references/repo-plane-map.md`
+3. `references/tooling-workflow.md`
+4. `references/engineering-defaults.md`
+5. `references/review-heuristics.md`
+6. `references/public-obsidian.md`
 
 ## Non-Negotiables
 
@@ -40,7 +41,7 @@ Read only the references needed for the current task.
 - Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) in Riff Labs repos.
 - Treat [Changesets](https://github.com/changesets/changesets) as the release/versioning layer that pairs with Conventional Commits, not as a separate optional system.
 - Use [Semantic Versioning](https://semver.org/) for published versions and release expectations.
-- Prefer working branches in the form `[TICKET-ID]/ghusername/topic-name` so ownership and intent stay visible to humans and agents.
+- Prefer working branches in the form `TICKET-ID/ghusername/topic-name` so ownership and intent stay visible to humans and agents.
 - Treat `dev`, `staging`, `main`, and `release` as promotion streams with increasing stability rather than as interchangeable long-lived dumping grounds.
 - Allow polite history cleanup over time when that keeps the history legible and closer to the real work that happened.
 - Keep the skill flexible and model-driven rather than rigid and task-taxonomic.
