@@ -1,5 +1,5 @@
 ---
-name: database-architecture
+name: riff-database-architecture
 description: Expert in database schema design, query optimization, indexing strategies, and scaling patterns. Use when designing schemas, optimizing slow queries, planning database scaling, or troubleshooting performance issues.
 ---
 

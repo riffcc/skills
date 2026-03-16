@@ -1,5 +1,5 @@
 ---
-name: lean-prover
+name: riff-lean-prover
 description: Expert in Lean 4 theorem proving and formal verification. Use when writing formal proofs, translating informal mathematics to Lean, debugging proof states, or choosing tactics and proof structure in Lean 4.
 ---
 

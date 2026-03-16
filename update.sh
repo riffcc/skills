@@ -60,7 +60,13 @@ install_root() {
       echo "warning: skipping missing skill directory $skill_dir" >&2
       continue
     fi
-    dest="$target_root/$skill_name"
+    # Skills already prefixed with riff- keep their name; others get the prefix
+    if [[ "$skill_name" == riff-* ]]; then
+      shortname="$skill_name"
+    else
+      shortname="riff-$skill_name"
+    fi
+    dest="$target_root/$shortname"
     rm -rf "$dest"
     if [[ "$MODE" == "symlink" ]]; then
       ln -s "$skill_dir" "$dest"

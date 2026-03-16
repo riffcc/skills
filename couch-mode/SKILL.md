@@ -1,5 +1,5 @@
 ---
-name: couch-mode
+name: riff-couch-mode
 description: Voice-first, gamepad-friendly operating mode for low-input sessions. Use when the user is steering with voice, a controller, or very limited typing and the interaction should favor short structured choices over open-ended prompts.
 ---
 

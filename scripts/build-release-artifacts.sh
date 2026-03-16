@@ -58,13 +58,20 @@ for skill in "${skills[@]}"; do
     exit 1
   fi
 
+  # Skills already prefixed with riff- keep their name; others get the prefix
+  if [[ "$skill" == riff-* ]]; then
+    shortname="$skill"
+  else
+    shortname="riff-$skill"
+  fi
+
   artifact_base="rifflabs-skill-$skill"
   skill_stage="$BUILD_ROOT/$artifact_base-skill"
   mkdir -p "$skill_stage"
   cp -a "$skill_src/." "$skill_stage/"
   cat > "$skill_stage/skill.json" <<EOF
 {
-  "name": "$skill",
+  "name": "$shortname",
   "version": "$version",
   "package": "$artifact_base"
 }
@@ -75,38 +82,38 @@ EOF
   )
 
   pkg_root="$BUILD_ROOT/$artifact_base-deb"
-  mkdir -p "$pkg_root/DEBIAN" "$pkg_root/usr/share/rifflabs-skills/skills/$skill"
-  cp -a "$skill_src/." "$pkg_root/usr/share/rifflabs-skills/skills/$skill/"
-  cat > "$pkg_root/usr/share/rifflabs-skills/skills/$skill/skill.json" <<EOF
+  mkdir -p "$pkg_root/DEBIAN" "$pkg_root/usr/share/rifflabs-skills/skills/$shortname"
+  cp -a "$skill_src/." "$pkg_root/usr/share/rifflabs-skills/skills/$shortname/"
+  cat > "$pkg_root/usr/share/rifflabs-skills/skills/$shortname/skill.json" <<EOF
 {
-  "name": "$skill",
+  "name": "$shortname",
   "version": "$version",
   "package": "$artifact_base"
 }
 EOF
-  write_control "$pkg_root/DEBIAN/control" "$artifact_base" "Riff Labs public skill: $skill"
+  write_control "$pkg_root/DEBIAN/control" "$artifact_base" "Riff Labs public skill: $shortname"
   cat > "$pkg_root/DEBIAN/postinst" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
-SKILL_PATH="/usr/share/rifflabs-skills/skills/$skill"
+SKILL_PATH="/usr/share/rifflabs-skills/skills/$shortname"
 for home in /home/*; do
   [[ -d "\$home" ]] || continue
   user="\$(basename "\$home")"
   for root in "\$home/.codex/skills" "\$home/.claude/skills"; do
     mkdir -p "\$root"
-    ln -sfn "\$SKILL_PATH" "\$root/$skill"
-    chown -h "\$user:\$user" "\$root/$skill" 2>/dev/null || true
+    ln -sfn "\$SKILL_PATH" "\$root/$shortname"
+    chown -h "\$user:\$user" "\$root/$shortname" 2>/dev/null || true
   done
 done
 EOF
   cat > "$pkg_root/DEBIAN/prerm" <<EOF
 #!/usr/bin/env bash
 set -euo pipefail
-SKILL_PATH="/usr/share/rifflabs-skills/skills/$skill"
+SKILL_PATH="/usr/share/rifflabs-skills/skills/$shortname"
 for home in /home/*; do
   [[ -d "\$home" ]] || continue
   for root in "\$home/.codex/skills" "\$home/.claude/skills"; do
-    link="\$root/$skill"
+    link="\$root/$shortname"
     if [[ -L "\$link" && "\$(readlink -f "\$link")" == "\$SKILL_PATH" ]]; then
       rm -f "\$link"
     fi

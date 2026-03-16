@@ -1,5 +1,5 @@
 ---
-name: jetpack-developer
+name: riff-jetpack-developer
 description: Build and maintain Jetpack itself plus the deployment systems around it. Use when fixing Jetpack engine behavior, adding or refactoring roles, designing inventories or playbooks, or deploying software through Jetpack across Linux and macOS targets.
 ---
 

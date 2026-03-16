@@ -1,5 +1,5 @@
 ---
-name: playwright-tester
+name: riff-playwright-tester
 description: Expert in comprehensive website testing with Playwright. Use when auditing sites for functionality, usability, accessibility, translation quality, and performance, or when generating regression checks from those findings.
 ---
 

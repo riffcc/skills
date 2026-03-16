@@ -1,5 +1,5 @@
 ---
-name: infrastructure-deployment
+name: riff-infrastructure-deployment
 description: Expert in infrastructure deployment automation, configuration management, and operational reliability. Use when designing deployment pipelines, provisioning systems, writing playbooks, or troubleshooting deployment drift and repeatability issues.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: storage-systems
+name: riff-storage-systems
 description: Expert in distributed storage systems, file systems, object storage, and data persistence trade-offs. Use when designing storage architecture, choosing backends, planning redundancy, or debugging storage performance.
 ---
 

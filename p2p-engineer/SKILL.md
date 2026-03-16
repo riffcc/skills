@@ -1,5 +1,5 @@
 ---
-name: p2p-engineer
+name: riff-p2p-engineer
 description: Expert in peer-to-peer networking, DHTs, gossip protocols, and production mesh behavior. Use when designing peer discovery, state propagation, content routing, or turning a simulated P2P system into a real distributed one.
 ---
 

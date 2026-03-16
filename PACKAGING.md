@@ -76,10 +76,31 @@ The package should:
 
 - install into a shared local store
 - then symlink into:
-  - `~/.codex/skills/<skill-name>`
-  - `~/.claude/skills/<skill-name>`
+  - `~/.codex/skills/<shortname>`
+  - `~/.claude/skills/<shortname>`
 
 This keeps skill installation modular and makes selective installs easy.
+
+### Naming Convention
+
+Skills use a two-tier naming scheme:
+
+- **Package name** (`.deb`): `rifflabs-skill-<bare-name>` — the full qualified package identifier
+- **Shortname** (installed directory): `riff-<bare-name>` — what users see in `~/.claude/skills/`
+
+Skills whose bare name already starts with `riff-` (e.g. `riff-labs`, `riff-obsidian`, `riff-onboarding`)
+keep their name as-is for the shortname. All others get the `riff-` prefix added.
+
+Examples:
+
+| Repo directory | Package name | Installed as (shortname) |
+|---|---|---|
+| `couch-mode` | `rifflabs-skill-couch-mode` | `riff-couch-mode` |
+| `lean-prover` | `rifflabs-skill-lean-prover` | `riff-lean-prover` |
+| `riff-labs` | `rifflabs-skill-riff-labs` | `riff-labs` |
+
+This makes installed skills easy to identify and uninstall — everything in `~/.claude/skills/` starting
+with `riff-` came from this repo.
 
 ## CI/CD Responsibilities
 

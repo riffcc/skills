@@ -1,5 +1,5 @@
 ---
-name: pal-commit
+name: riff-pal-commit
 description: Create atomic git commits by reviewing uncommitted changes, grouping them by logical concern, and committing each group with concise why-focused messages.
 ---
 
