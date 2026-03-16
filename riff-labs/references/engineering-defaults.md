@@ -28,6 +28,8 @@ For this rewrite, progressive discovery is also a skill-authoring rule:
 - treat Riff as parallel streams sharing one architecture, not as a single queue to serialize
 - keep intent and rationale in the vault, execution in Plane, and human-facing agent work centered on Codex
 - keep verification automated where possible and keep progress visible rather than trapped in one operator's head
+- treat `main` as a trusted build-from-here branch, with stronger verification and policy than `dev`
+- let agents participate eagerly in branch creation and execution, but make promotion contingent on visible checks rather than optimism
 
 ## Systems Of Engineering
 
