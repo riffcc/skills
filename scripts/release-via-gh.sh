@@ -21,4 +21,4 @@ fi
 gh release create "$TAG" "$DIST_DIR"/* \
   --repo riffcc/skills \
   --title "$TITLE" \
-  --notes "First public skills release. Includes per-skill .skill artifacts, per-skill Debian packages, and the updater package."
+  --generate-notes
