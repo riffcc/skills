@@ -1,0 +1,14 @@
+{
+  "name": "skills-rewrite",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Flat public skill library for Codex and Claude skill installation.",
+  "scripts": {
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.5"
+  }
+}

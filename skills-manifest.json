@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "name": "skills-rewrite",
+  "version": "0.1.0",
+  "skills": [
+    "couch-mode",
+    "database-architecture",
+    "infrastructure-deployment",
+    "jetpack-developer",
+    "lean-prover",
+    "p2p-engineer",
+    "pal-commit",
+    "playwright-tester",
+    "riff-labs",
+    "riff-obsidian",
+    "riff-onboarding",
+    "storage-systems"
+  ]
+}
