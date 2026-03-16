@@ -22,6 +22,15 @@ print(data["version"])
 PY
 )"
 
+mapfile -t manifest_skills < <(python3 - <<'PY' "$MANIFEST"
+import json, sys
+with open(sys.argv[1], "r", encoding="utf-8") as f:
+    data = json.load(f)
+for skill in data["skills"]:
+    print(skill)
+PY
+)
+
 version_gt() {
   local left="$1"
   local right="$2"
@@ -45,8 +54,12 @@ install_root() {
     fi
   fi
 
-  while IFS= read -r skill_dir; do
-    skill_name="$(basename "$skill_dir")"
+  for skill_name in "${manifest_skills[@]}"; do
+    skill_dir="$ROOT/$skill_name"
+    if [[ ! -d "$skill_dir" ]]; then
+      echo "warning: skipping missing skill directory $skill_dir" >&2
+      continue
+    fi
     dest="$target_root/$skill_name"
     rm -rf "$dest"
     if [[ "$MODE" == "symlink" ]]; then
@@ -55,7 +68,7 @@ install_root() {
       cp -a "$skill_dir" "$dest"
     fi
     echo "installed $skill_name -> $dest"
-  done < <(find "$ROOT" -mindepth 1 -maxdepth 1 -type d ! -name ".git" ! -name ".github" ! -name ".changeset")
+  done
 
   printf '%s\n' "$repo_version" > "$marker"
 }
