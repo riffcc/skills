@@ -67,13 +67,23 @@ install_root() {
       shortname="riff-$skill_name"
     fi
     dest="$target_root/$shortname"
-    rm -rf "$dest"
+    rm -r "$dest" 2>/dev/null || true
     if [[ "$MODE" == "symlink" ]]; then
       ln -s "$skill_dir" "$dest"
     else
       cp -a "$skill_dir" "$dest"
     fi
     echo "installed $skill_name -> $dest"
+    # Clean up stale unprefixed symlink from older installs
+    if [[ "$shortname" != "$skill_name" ]]; then
+      stale="$target_root/$skill_name"
+      if [[ -L "$stale" ]]; then
+        rm "$stale"
+        echo "removed stale symlink $stale"
+      elif [[ -d "$stale" ]]; then
+        echo "warning: stale directory $stale exists, remove manually" >&2
+      fi
+    fi
   done
 
   printf '%s\n' "$repo_version" > "$marker"

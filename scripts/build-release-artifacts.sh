@@ -101,6 +101,13 @@ for home in /home/*; do
   user="\$(basename "\$home")"
   for root in "\$home/.codex/skills" "\$home/.claude/skills"; do
     mkdir -p "\$root"
+    # Remove stale unprefixed symlink from older package versions
+    stale="\$root/$skill"
+    if [[ "$shortname" != "$skill" && -L "\$stale" ]]; then
+      rm "\$stale"
+    elif [[ "$shortname" != "$skill" && -d "\$stale" ]]; then
+      echo "warning: stale directory \$stale exists, remove manually" >&2
+    fi
     ln -sfn "\$SKILL_PATH" "\$root/$shortname"
     chown -h "\$user:\$user" "\$root/$shortname" 2>/dev/null || true
   done
