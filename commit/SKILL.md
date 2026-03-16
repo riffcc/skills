@@ -1,9 +1,9 @@
 ---
-name: riff-pal-commit
+name: riff-commit
 description: Create atomic git commits by reviewing uncommitted changes, grouping them by logical concern, and committing each group with concise why-focused messages.
 ---
 
-# pal-commit
+# riff-commit
 
 Use this skill to turn a dirty git worktree into one or more clean commits.
 
