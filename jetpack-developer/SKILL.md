@@ -50,6 +50,13 @@ If the problem is environment-specific, fix inventory or playbook wiring.
 - Express PATH and shell environment fixes through managed config, not lucky interactive state.
 - Encode platform assumptions in vars, roles, or inventory instead of shell fragments.
 
+## Research & Proofs
+
+Jetpack carries formally-verified research under `docs/research/` (e.g. `provisioning-barrier`) and `proofs/`. When touching those:
+
+- Apply the **riff-lean-prover** discipline: 0-sorry, minimal-axiom, load-bearing claims must be `theorem`s, and report sorry/axiom/theorem via `#print axioms`.
+- Jetpack research publishes at `research.riff.cc`, where claims must match what `lake build` actually establishes — never state a result stronger than its proof category. The claims-vs-proofs check (sorry/axiom/theorem-aware) is CI-enforced; a mismatch fails the build.
+
 ## Good Outcome
 
 A good Jetpack change:

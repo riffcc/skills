@@ -27,6 +27,7 @@ Use this skill when the task is about Lean 4 proofs, formal verification, or the
 3. Sketch the proof before committing to tactics.
 4. Build the proof incrementally.
 5. Type-check and explain the result in plain language.
+6. Verify honestly — `#print axioms` + sorry-count; report sorry/axiom/theorem per load-bearing claim (see Proof Honesty).
 
 ## Lean Bias
 
@@ -34,7 +35,22 @@ Use this skill when the task is about Lean 4 proofs, formal verification, or the
 - Prefer explicit structure over giant opaque tactic blocks.
 - Use existing library theorems when they simplify the proof honestly.
 - Keep hypothesis names meaningful.
-- Avoid leaving `sorry` in finished work.
+- Never leave `sorry` in finished work, and treat `axiom` with equal care — see Proof Honesty below.
+
+## Proof Honesty: sorry / axiom / theorem
+
+A result is only as honest as its weakest step. Three categories, never conflated:
+
+- **`theorem`** — actually proven. The only category that earns the word "proven."
+- **`sorry`** — a hole. Never in finished work.
+- **`axiom`** — an asserted assumption. Legitimate when it models a real-world hypothesis you want visible (a channel model, a fairness assumption) or carries a standard math axiom (`propext`, `Quot.sound`). **But every axiom is a proof debt:** it must be named, justified in prose, and counted. An axiom that asserts the load-bearing property you set out to prove is a gap dressed as a proof — downgrade the claim to "assumed" or "conjectured," never assert it silently.
+
+Working rules:
+
+- Aim for **0-sorry, minimal-axiom**; the strongest result is **0-axiom, constructive** (only standard `propext`/`Quot.sound`-tier, or nothing).
+- A load-bearing property — the thing a paper or doc claims — must be a `theorem`. If it sits as an `axiom`, the "theorems" around it are wrappers over an assertion; say so.
+- Before reporting a result as proven, run `#print axioms <name>` and report both the **sorry-count** and the **axiom set**. Published claims must name which category each load-bearing statement is in.
+- A real channel's liveness/reliability is a *stated hypothesis*, not a theorem and not an axiom in disguise: prove safety unconditionally; prove liveness *under* the fair-lossy (or equivalent) hypothesis, explicitly.
 
 ## Good Fits
 

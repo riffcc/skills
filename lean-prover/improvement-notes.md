@@ -40,3 +40,12 @@ Initial creation as a formal reasoning skill intended to work well outside the a
 - Test on moderate theorems (requiring induction, case analysis)
 - Test on competition problems (AMC, AIME level)
 - Iterative improvement based on proof success rate
+
+### Version 2 (2026-07-01) — Proof Honesty: sorry / axiom / theorem discipline
+
+Encoded the distinction between `sorry` (hole), `axiom` (asserted assumption / proof debt), and `theorem` (proven). The skill previously said only "avoid `sorry`," which let a deeper gap pass undetected. Drivers:
+
+- The Citadel topology proofs compile with **zero `sorry`** but assert their load-bearing properties (`greedy_progress`, `diameter_bound`, `global_knowledge_from_local_sync`) as `axiom` — and the "theorems" around some of them just discharge a hypothesis. A sorry-only lint falsely stamps these "proven."
+- The Provisioning Barrier research (`jetpack/docs/research/provisioning-barrier`) deliberately targets **0-axiom** proofs and treats fair-lossy as a *stated liveness hypothesis*, not a theorem and not an axiom in disguise — the posture this skill now codifies.
+
+New rules added to SKILL.md: a load-bearing property must be a `theorem`; report sorry-count **and** the axiom set via `#print axioms`; published claims name sorry/axiom/theorem per statement; safety is proven unconditionally, liveness under an explicit fair-lossy hypothesis. This is what makes "formally verified" auditable rather than performative, and what the Riff docs integrity spine (claims-vs-proofs CI) needs to enforce.
